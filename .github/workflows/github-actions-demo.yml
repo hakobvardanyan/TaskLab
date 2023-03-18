@@ -11,7 +11,7 @@ jobs:
   Unit-Tests:
     runs-on: [ ubuntu-latest ]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Unit tests
         run: ./gradlew test
@@ -19,7 +19,7 @@ jobs:
   #  android_tests:
   #    runs-on: [ macos-latest ]
   #    steps:
-  #      - uses: actions/checkout@v2
+  #      - uses: actions/checkout@v3
   #
   #      - name: Instrumentation Tests
   #        uses: reactivecircus/android-emulator-runner@v2
@@ -33,7 +33,7 @@ jobs:
     steps:
       # 1
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       # 2
       - name: Generate Release APK
         run: ./gradlew assembleRelease
@@ -48,8 +48,6 @@ jobs:
           alias: ${{ secrets.ALIAS }}
           keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
           keyPassword: ${{ secrets.KEY_PASSWORD }}
-        env:
-          BUILD_TOOLS_VERSION: "33.0.1"
       # 4
       - uses: actions/upload-artifact@master
         with:
