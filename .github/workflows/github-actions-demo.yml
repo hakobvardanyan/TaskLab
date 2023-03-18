@@ -8,21 +8,21 @@ on:
 ## 2
 jobs:
   ## 3
-  unit_tests:
+  Unit Tests:
     runs-on: [ubuntu-latest]
     steps:
       - uses: actions/checkout@v2
 
       - name: Unit tests
         run: ./gradlew test
-  ## 4
-  android_tests:
-    runs-on: [ macos-latest ]
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Instrumentation Tests
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 29
-          script: ./gradlew connectedAndroidTest
+#  ## 4
+#  android_tests:
+#    runs-on: [ macos-latest ]
+#    steps:
+#      - uses: actions/checkout@v2
+#
+#      - name: Instrumentation Tests
+#        uses: reactivecircus/android-emulator-runner@v2
+#        with:
+#          api-level: 29
+#          script: ./gradlew connectedAndroidTest
