@@ -28,7 +28,7 @@ jobs:
 #          script: ./gradlew connectedAndroidTest
 
   Build:
-    needs: [ unit_tests ]
+    needs: [ Unit-Tests ]
     runs-on: ubuntu-latest
     steps:
       # 1
