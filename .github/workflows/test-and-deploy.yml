@@ -24,7 +24,7 @@ jobs:
         run: ./gradlew test
 
   Build:
-    needs: [ Unit-Tests ]
+    needs: [ Tests ]
     runs-on: ubuntu-latest
     steps:
       # 1
