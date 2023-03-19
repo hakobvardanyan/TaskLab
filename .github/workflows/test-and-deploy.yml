@@ -72,5 +72,5 @@ jobs:
         with:
           appId: ${{secrets.FIREBASE_APP_ID}}
           token: ${{secrets.FIREBASE_TOKEN}}
-          groups: QA
+          groups: Stakeholders
           file: app-release-unsigned-signed.apk
