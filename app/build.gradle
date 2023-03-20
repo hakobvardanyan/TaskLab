@@ -27,10 +27,7 @@ android {
             storeFile file(globalConf.keystore)
             storePassword globalConf.keystorePass
             keyAlias globalConf.alias
-
-            if (!System.getenv("CI")) {
-                keyPassword globalConf.aliasPass
-            }
+            keyPassword globalConf.aliasPass
         }
     }
 
@@ -40,7 +37,9 @@ android {
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 
-            signingConfig signingConfigs.release
+            if (!System.getenv("CI")) {
+                signingConfig signingConfigs.release
+            }
         }
 
         debug {
