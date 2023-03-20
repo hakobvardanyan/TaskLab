@@ -55,7 +55,7 @@ jobs:
       # 5
       - uses: actions/upload-artifact@master
         with:
-          name: CarBox_Release_v${{ steps.versionReader.outputs.versionName }}({{ steps.versionReader.outputs.versionCode }}).apk
+          name: CarBox_Release_v${{ steps.versionReader.outputs.versionName }}_{{ steps.versionReader.outputs.versionCode }}.apk
           path: ${{steps.sign_app.outputs.signedReleaseFile}}
       # 6
       - uses: actions/upload-artifact@master
@@ -68,11 +68,9 @@ jobs:
     needs: [ Build ]
     runs-on: ubuntu-latest
     steps:
-
       # 1
       - name: Checkout code
         uses: actions/checkout@v3
-
       # 2
       - name: Get Android version
         id: versionReader
@@ -82,7 +80,7 @@ jobs:
       # 3
       - uses: actions/download-artifact@master
         with:
-          name: CarBox_Release_v${{ steps.versionReader.outputs.versionName }}({{ steps.versionReader.outputs.versionCode }}).apk
+          name: CarBox_Release_v${{ steps.versionReader.outputs.versionName }}_{{ steps.versionReader.outputs.versionCode }}.apk
       # 4
       - name: Upload artifact to Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1
