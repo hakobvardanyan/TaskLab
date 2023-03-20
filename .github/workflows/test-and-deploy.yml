@@ -49,6 +49,7 @@ jobs:
       # 4
       - uses: actions/upload-artifact@master
         with:
+          name: ${{ env.name }}-name
           path: ${{steps.sign_app.outputs.signedReleaseFile}}
       # 5
       - uses: actions/upload-artifact@master
@@ -64,7 +65,7 @@ jobs:
       # 2
       - uses: actions/download-artifact@master
         with:
-          path: ${{steps.sign_app.outputs.signedReleaseFile}}
+          name: ${{ env.name }}-name
       #3
       - name: Upload artifact to Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1
