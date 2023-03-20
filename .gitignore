@@ -226,3 +226,4 @@ fabric.properties
 
 # End of https://www.toptal.com/developers/gitignore/api/android,androidstudio,kotlin,java,sonar,gradle
 /app/release/output-metadata.json
+/configs/
