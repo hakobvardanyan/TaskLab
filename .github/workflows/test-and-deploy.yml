@@ -65,7 +65,7 @@ jobs:
       # 2
       - uses: actions/download-artifact@master
         with:
-          name: release.apk
+          name: CarBox_Release.apk
       #3
       - name: Upload artifact to Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1
