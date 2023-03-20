@@ -26,6 +26,12 @@ android {
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+
+        debug {
+            applicationIdSuffix ".debug"
+            debuggable true
+        }
+
         applicationVariants.all { variant ->
             variant.outputs.each { output ->
                 def SEPARATOR = "_"
