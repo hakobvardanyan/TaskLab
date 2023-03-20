@@ -31,11 +31,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Expose version name
-          uses: michpohl/android-expose-version-name-action@v1.0.0
+      - name: Get Android version
+          id: versionReader
+          uses: ltDino/android-get-version-action@v1.0
           with:
-            expose-version-name: 'true'
-            expose-version-code: 'true'
+            gradlePath: app/build.gradle # or app/build.gradle.kts
       # 2
       - name: Generate Release APK
         run: ./gradlew assembleRelease
@@ -55,7 +55,7 @@ jobs:
       # 4
       - uses: actions/upload-artifact@master
         with:
-          name: CarBox_Release_${{ env.ANDROID_VERSION_NAME }}.apk
+          name: CarBox_Release_${{ steps.versionReader.outputs.versionName }}.apk
           path: ${{steps.sign_app.outputs.signedReleaseFile}}
       # 5
       - uses: actions/upload-artifact@master
@@ -71,7 +71,7 @@ jobs:
       # 2
       - uses: actions/download-artifact@master
         with:
-          name: CarBox_Release_${{ env.ANDROID_VERSION_NAME }}.apk
+          name: CarBox_Release_${{ steps.versionReader.outputs.versionName }}.apk
       #3
       - name: Upload artifact to Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1
