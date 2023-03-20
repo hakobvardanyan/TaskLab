@@ -22,24 +22,21 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    signingConfigs {
-        release {
-            storeFile file(globalConf.keystore)
-            storePassword globalConf.keystorePass
-            keyAlias globalConf.alias
-            keyPassword globalConf.aliasPass
-        }
-    }
+//    signingConfigs {
+//        release {
+//            storeFile file(globalConf.keystore)
+//            storePassword globalConf.keystorePass
+//            keyAlias globalConf.alias
+//            keyPassword globalConf.aliasPass
+//        }
+//    }
 
     buildTypes {
         release {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-
-            if (!System.getenv("CI")) {
-                signingConfig signingConfigs.release
-            }
+//            signingConfig signingConfigs.release
         }
 
         debug {
