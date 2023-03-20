@@ -33,7 +33,7 @@ jobs:
 
       - name: version reader
         id: versionReader
-        uses: Devofure/version-reader-action@v1.0.1
+        uses: Devofure/version-reader-action@v1.1.0
         with:
           gradlePath: app/build.gradle # Default is app/build.gradle
       # 2
