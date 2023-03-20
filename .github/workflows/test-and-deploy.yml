@@ -31,11 +31,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       # 2
-      - name: Get Android version
+      - name: version reader
         id: versionReader
-        uses: ltDino/android-get-version-action@v1.0
+        uses: Devofure/version-reader-action@v1.1.0
         with:
-          gradlePath: app/build.gradle # or app/build.gradle.kts
+          gradlePath: app/build.gradle # Default is app/build.gradle
       # 3
       - name: Generate Release APK
         run: ./gradlew assembleRelease
@@ -72,11 +72,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       # 2
-      - name: Get Android version
+      - name: version reader
         id: versionReader
-        uses: ltDino/android-get-version-action@v1.0
+        uses: Devofure/version-reader-action@v1.1.0
         with:
-          gradlePath: app/build.gradle # or app/build.gradle.kts
+          gradlePath: app/build.gradle # Default is app/build.gradle
       # 3
       - uses: actions/download-artifact@master
         with:
