@@ -5,6 +5,8 @@ plugins {
     id 'com.google.gms.google-services'
 }
 
+def globalConf = rootProject.extensions.getByName("ext")
+
 android {
     namespace 'am.carbox.delivery'
     compileSdk 33
@@ -20,16 +22,31 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        release {
+            storeFile file(globalConf.keystore)
+            storePassword globalConf.keystorePass
+            keyAlias globalConf.alias
+            keyPassword globalConf.aliasPass
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
 
         debug {
             applicationIdSuffix ".debug"
             debuggable true
+        }
+
+        staging {
+            initWith debug
+            applicationIdSuffix ".staging"
         }
 
         applicationVariants.all { variant ->
