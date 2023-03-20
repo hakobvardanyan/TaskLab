@@ -42,7 +42,6 @@ jobs:
       # 4
       - name: Sign APK
         uses: r0adkll/sign-android-release@v1
-        # ID used to access action output
         id: sign_app
         with:
           releaseDirectory: app/build/outputs/apk/release
@@ -76,7 +75,7 @@ jobs:
         id: versionReader
         uses: Devofure/version-reader-action@v1.1.0
         with:
-          gradlePath: app/build.gradle # Default is app/build.gradle
+          gradlePath: app/build.gradle
       # 3
       - uses: actions/download-artifact@master
         with:
