@@ -7,6 +7,12 @@ plugins {
 
 //def globalConf = rootProject.extensions.getByName("ext")
 
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('key.properties')
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
 android {
     namespace 'am.carbox.delivery'
     compileSdk 33
@@ -16,27 +22,36 @@ android {
         applicationId "am.carbox.delivery"
         minSdk 24
         targetSdk 33
-        versionCode 2
-        versionName "1.0.0"
+        if (project.properties["VERSION_CODE"] != null) {
+            versionCode = project.properties["VERSION_CODE"] as Integer
+        } else {
+            versionCode = 1
+        }
+
+        if (project.properties["VERSION_NAME"] != null) {
+            versionName = project.properties["VERSION_NAME"]
+        } else {
+            versionName = "1.0.0"
+        }
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-//    signingConfigs {
-//        release {
-//            storeFile file(globalConf.keystore)
-//            storePassword globalConf.keystorePass
-//            keyAlias globalConf.alias
-//            keyPassword globalConf.aliasPass
-//        }
-//    }
+    signingConfigs {
+        release {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+            storePassword keystoreProperties['storePassword']
+        }
+    }
 
     buildTypes {
         release {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-//            signingConfig signingConfigs.release
+            signingConfig signingConfigs.release
         }
 
         debug {
