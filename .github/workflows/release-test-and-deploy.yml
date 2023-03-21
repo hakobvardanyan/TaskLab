@@ -4,17 +4,19 @@ on:
   push:
     tags:
       - 'v*'
+    branches:
+      - release
   # Allows to run this workflow manually from the Actions tab
   workflow_dispatch:
     inputs:
       versionName:
         description: 'User-facing release version name'
         required: true
-        default: "1.0.0"
+        default: "1.0.1"
       versionCode:
         description: 'versionCode or build number'
         required: true
-        default: '1'
+        default: '2'
 
 
 jobs:
