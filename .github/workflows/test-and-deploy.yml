@@ -1,7 +1,5 @@
-## 1
 name: Test and deploy
 
-## Actions that will be executed when you push code currently none
 on:
   push:
     tags:
@@ -14,9 +12,7 @@ on:
       - main
       - release
 
-## 2
 jobs:
-  ## 3
   Tests:
     runs-on: [ ubuntu-latest ]
     steps:
@@ -32,16 +28,10 @@ jobs:
       # 1
       - name: Checkout code
         uses: actions/checkout@v3
-#      # 2
-#      - name: Version reader
-#        id: versionReader
-#        uses: Devofure/version-reader-action@v1.1.0
-#        with:
-#          gradlePath: app/build.gradle
-      # 3
+      # 2
       - name: Generate Release APK
         run: ./gradlew --no-daemon assembleRelease
-      # 4
+      # 3
       - name: Sign APK
         uses: r0adkll/sign-android-release@v1
         id: sign_app
@@ -53,36 +43,26 @@ jobs:
           keyPassword: ${{ secrets.KEY_PASSWORD }}
         env:
           BUILD_TOOLS_VERSION: "33.0.1"
-      # 5
+      # 4
       - uses: actions/upload-artifact@master
         with:
           name: release.apk
           path: ${{ steps.sign_app.outputs.signedReleaseFile }}
-      # 6
+      # 5
       - uses: actions/upload-artifact@master
         with:
           name: mapping.txt
           path: app/build/outputs/mapping/release/mapping.txt
 
   Distribute:
-    # 1
     needs: [ Build ]
     runs-on: ubuntu-latest
     steps:
-#      # 1
-#      - name: Checkout code
-#        uses: actions/checkout@v3
-#      # 2
-#      - name: Version reader
-#        id: versionReader
-#        uses: Devofure/version-reader-action@v1.1.0
-#        with:
-#          gradlePath: app/build.gradle
-      # 3
+      # 1
       - uses: actions/download-artifact@master
         with:
           name: release.apk
-      # 4
+      # 2
       - name: Upload artifact to Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
