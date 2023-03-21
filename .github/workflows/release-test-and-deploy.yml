@@ -2,7 +2,7 @@ name: Android Release Distribution
 
 on:
   # Allows to run this workflow manually from the Actions tab
-  workflow_release:
+  workflow_dispatch:
     inputs:
       versionName:
         description: 'User-facing release version name'
