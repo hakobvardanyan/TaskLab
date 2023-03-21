@@ -14,7 +14,7 @@ on:
         default: '1'
 
 jobs:
-  signed-build:
+  release-build:
     runs-on: ubuntu-latest
 
     steps:
@@ -60,7 +60,7 @@ jobs:
           path: app/build/outputs/apk/release/app-release.apk
 
   Distribute:
-    needs: [ Build ]
+    needs: [ release-build ]
     runs-on: ubuntu-latest
     steps:
       # 1
