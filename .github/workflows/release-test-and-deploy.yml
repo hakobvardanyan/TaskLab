@@ -13,12 +13,6 @@ on:
         required: true
         default: '1'
 
-    push:
-      tags:
-        - 'v*'
-      branches:
-        - release
-
 jobs:
   unit-tests:
     runs-on: [ ubuntu-latest ]
