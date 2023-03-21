@@ -43,17 +43,6 @@ android {
             applicationIdSuffix ".debug"
             debuggable true
         }
-
-//        applicationVariants.all { variant ->
-//            variant.outputs.each { output ->
-//                def SEPARATOR = "_"
-//                def project = "CarBox"
-//                def buildType = variant.buildType.name
-//                def versionName = "v" + variant.versionName
-//                def versionCode = variant.versionCode
-//                output.outputFileName = project + SEPARATOR + buildType + SEPARATOR + versionName + "($versionCode)" + ".apk"
-//            }
-//        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -65,7 +54,6 @@ android {
 }
 
 dependencies {
-
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
