@@ -32,15 +32,15 @@ jobs:
       # 1
       - name: Checkout code
         uses: actions/checkout@v3
-      # 2
-      - name: Version reader
-        id: versionReader
-        uses: Devofure/version-reader-action@v1.1.0
-        with:
-          gradlePath: app/build.gradle
+#      # 2
+#      - name: Version reader
+#        id: versionReader
+#        uses: Devofure/version-reader-action@v1.1.0
+#        with:
+#          gradlePath: app/build.gradle
       # 3
       - name: Generate Release APK
-        run: ./gradlew assembleRelease
+        run: ./gradlew --no-daemon assembleRelease
       # 4
       - name: Sign APK
         uses: r0adkll/sign-android-release@v1
@@ -56,7 +56,7 @@ jobs:
       # 5
       - uses: actions/upload-artifact@master
         with:
-          name: CarBox_Release_v${{ steps.versionReader.outputs.cleanVersionName }}(${{ steps.versionReader.outputs.versionCode }}).apk
+          name: release.apk
           path: ${{ steps.sign_app.outputs.signedReleaseFile }}
       # 6
       - uses: actions/upload-artifact@master
@@ -69,19 +69,19 @@ jobs:
     needs: [ Build ]
     runs-on: ubuntu-latest
     steps:
-      # 1
-      - name: Checkout code
-        uses: actions/checkout@v3
-      # 2
-      - name: Version reader
-        id: versionReader
-        uses: Devofure/version-reader-action@v1.1.0
-        with:
-          gradlePath: app/build.gradle
+#      # 1
+#      - name: Checkout code
+#        uses: actions/checkout@v3
+#      # 2
+#      - name: Version reader
+#        id: versionReader
+#        uses: Devofure/version-reader-action@v1.1.0
+#        with:
+#          gradlePath: app/build.gradle
       # 3
       - uses: actions/download-artifact@master
         with:
-          name: CarBox_Release_v${{ steps.versionReader.outputs.cleanVersionName }}(${{ steps.versionReader.outputs.versionCode }}).apk
+          name: release.apk
       # 4
       - name: Upload artifact to Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1
@@ -89,4 +89,4 @@ jobs:
           appId: ${{ secrets.FIREBASE_APP_ID }}
           token: ${{ secrets.FIREBASE_TOKEN }}
           groups: Stakeholders
-          file: CarBox_Release_v${{ steps.versionReader.outputs.cleanVersionName }}(${{ steps.versionReader.outputs.versionCode }}).apk
+          file: app-release-unsigned-signed.apk
