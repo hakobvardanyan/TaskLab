@@ -44,16 +44,16 @@ android {
             debuggable true
         }
 
-        applicationVariants.all { variant ->
-            variant.outputs.each { output ->
-                def SEPARATOR = "_"
-                def project = "CarBox"
-                def buildType = variant.buildType.name
-                def versionName = "v" + variant.versionName
-                def versionCode = variant.versionCode
-                output.outputFileName = project + SEPARATOR + buildType + SEPARATOR + versionName + "($versionCode)" + ".apk"
-            }
-        }
+//        applicationVariants.all { variant ->
+//            variant.outputs.each { output ->
+//                def SEPARATOR = "_"
+//                def project = "CarBox"
+//                def buildType = variant.buildType.name
+//                def versionName = "v" + variant.versionName
+//                def versionCode = variant.versionCode
+//                output.outputFileName = project + SEPARATOR + buildType + SEPARATOR + versionName + "($versionCode)" + ".apk"
+//            }
+//        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
