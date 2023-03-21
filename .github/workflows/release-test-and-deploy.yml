@@ -1,6 +1,11 @@
 name: Android Release Distribution
 
 on:
+  push:
+    tags:
+      - 'v*'
+    branches:
+      - release
   # Allows to run this workflow manually from the Actions tab
   workflow_dispatch:
     inputs:
@@ -13,11 +18,6 @@ on:
         required: true
         default: '1'
 
-    push:
-      tags:
-        - 'v*'
-      branches:
-        - release
 
 jobs:
   unit-tests:
