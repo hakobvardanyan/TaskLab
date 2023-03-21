@@ -56,7 +56,7 @@ jobs:
       - name: Upload build file
         uses: actions/upload-artifact@v3
         with:
-          name: release-apk
+          name: CarBox_Release
           path: app/build/outputs/apk/release/app-release.apk
 
   Distribute:
@@ -66,7 +66,7 @@ jobs:
       # 1
       - uses: actions/download-artifact@v3
         with:
-          name: release-apk
+          name: CarBox_Release
       # 2
       - name: Upload artifact to Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1
