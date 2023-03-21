@@ -89,4 +89,4 @@ jobs:
           appId: ${{ secrets.FIREBASE_APP_ID }}
           token: ${{ secrets.FIREBASE_TOKEN }}
           groups: Stakeholders
-          file: app-release-unsigned-signed.apk
+          file: CarBox_Release_v${{ steps.versionReader.outputs.cleanVersionName }}(${{ steps.versionReader.outputs.versionCode }}).apk

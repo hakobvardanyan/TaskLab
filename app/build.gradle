@@ -44,11 +44,6 @@ android {
             debuggable true
         }
 
-        staging {
-            initWith debug
-            applicationIdSuffix ".staging"
-        }
-
         applicationVariants.all { variant ->
             variant.outputs.each { output ->
                 def SEPARATOR = "_"
