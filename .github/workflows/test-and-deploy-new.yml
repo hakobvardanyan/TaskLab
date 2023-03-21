@@ -64,9 +64,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # 1
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@master
         with:
-          name: app-release.apk
+          name: release-apk
       # 2
       - name: Upload artifact to Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1
