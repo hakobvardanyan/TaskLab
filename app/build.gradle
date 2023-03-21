@@ -5,7 +5,7 @@ plugins {
     id 'com.google.gms.google-services'
 }
 
-def globalConf = rootProject.extensions.getByName("ext")
+//def globalConf = rootProject.extensions.getByName("ext")
 
 android {
     namespace 'am.carbox.delivery'
