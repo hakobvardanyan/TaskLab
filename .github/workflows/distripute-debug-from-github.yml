@@ -1,0 +1,42 @@
+name: Android Debug Distribution
+
+jobs:
+  debug-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: 11
+          cache: 'gradle'
+
+      - name: Make gradlew executable
+        run: chmod +x gradlew
+
+      - name: Build debug APK
+        run: ./gradlew --no-daemon assembleDebug
+
+      - name: Upload build file
+        uses: actions/upload-artifact@v3
+        with:
+          name: CarBox_Debug
+          path: app/build/outputs/apk/debug/app-debug.apk
+
+  Distribute:
+    needs: [ debug-build ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: CarBox_Debug
+
+      - name: Upload artifact to Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with:
+          appId: ${{ secrets.FIREBASE_APP_ID }}
+          token: ${{ secrets.FIREBASE_TOKEN }}
+          groups: Stakeholders
+          file: app-debug.apk
