@@ -1,5 +1,10 @@
 name: Android Debug Distribution
 
+on:
+  push:
+    branches:
+      - main
+
 jobs:
   debug-build:
     runs-on: ubuntu-latest
