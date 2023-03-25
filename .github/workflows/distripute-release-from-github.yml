@@ -68,12 +68,12 @@ jobs:
         with:
           name: CarBox_Release
           path: app/build/outputs/apk/release/app-release.apk
-      - name: Upload mapping file
 
-        uses: actions/upload-artifact@master
-          with:
-            name: mapping.txt
-            path: app/build/outputs/mapping/release/mapping.txt
+      - name: Upload mapping file
+        uses: actions/upload-artifact@v3
+        with:
+          name: mapping.txt
+          path: app/build/outputs/mapping/release/mapping.txt
 
   Distribute:
     needs: [ release-build ]
