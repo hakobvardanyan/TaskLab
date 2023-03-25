@@ -40,7 +40,7 @@ jobs:
           name: CarBox_Debug
           path: app/build/outputs/apk/debug/app-debug.apk
 
-  Distribute:
+  distribution:
     if: github.event_name != 'pull_request'
     needs: [ debug-build ]
     runs-on: ubuntu-latest
