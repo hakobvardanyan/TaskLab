@@ -13,8 +13,6 @@ plugins {
     id 'org.jetbrains.kotlin.android' version '1.7.21' apply false
 }
 
-//apply from: 'configs/secret.gradle'
-
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
