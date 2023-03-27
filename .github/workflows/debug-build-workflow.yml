@@ -1,4 +1,4 @@
-name: Android Debug Build Workflow
+name: CarBox CI
 
 on:
   push:
