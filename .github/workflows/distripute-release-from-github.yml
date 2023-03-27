@@ -98,13 +98,13 @@ jobs:
           # For posting a rich message using Block Kit
           payload: |
             {
-              "text": "Release build result: ${{ job.status }}\n Version Name is: ${{ github.event.inputs.versionName }} Version Code is: ${{ github.event.inputs.versionCode }}",
+              "text": "Release build status: ${{ job.status }}\n Version Name is: ${{ github.event.inputs.versionName }}\n Version Code is: ${{ github.event.inputs.versionCode }}",
               "blocks": [
                 {
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "Release build result: ${{ job.status }}\n Version Name is: ${{ github.event.inputs.versionName }} Version Code is: ${{ github.event.inputs.versionCode }}"
+                    "text": "Release build status: ${{ job.status }}\n Version Name is: ${{ github.event.inputs.versionName }}\n Version Code is: ${{ github.event.inputs.versionCode }}"
                   }
                 }
               ]
