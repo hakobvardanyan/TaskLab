@@ -14,4 +14,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "CarBox"
 include ':app'
-include ':core:extension-android'
+include ':core:extensions-android'
+include ':core:extensions-kotlin'
