@@ -24,7 +24,7 @@ jobs:
       - name: Detekt
         uses: natiginfo/action-detekt-all@1.22.0
         with:
-          args: --fail-fast --config detekt.yml
+          args: --fail-fast --config config/detekt/detekt.yml
 
   debug-build:
     needs: [ unit-tests, detekt ]
