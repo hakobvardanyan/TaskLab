@@ -142,6 +142,7 @@ proguard/
 # Android Studio
 /*/build/
 /*/local.properties
+/*/key.properties
 /*/out
 /*/*/build
 /*/*/production
@@ -228,3 +229,4 @@ fabric.properties
 /app/release/output-metadata.json
 /configs/
 /key.properties
+key.properties
