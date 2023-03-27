@@ -1,4 +1,4 @@
-name: Android Release Distribution From Github
+name: CarBox Release Workflow
 
 on:
   # Allows to run this workflow manually from the Actions tab
