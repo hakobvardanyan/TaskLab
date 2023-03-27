@@ -15,8 +15,19 @@ jobs:
       - name: Unit tests
         run: ./gradlew test
 
+  detekt:
+    runs-on: [ ubuntu-latest ]
+
+    steps:
+        uses: actions/checkout@v3
+
+      - name: Detekt
+        uses: natiginfo/action-detekt-all@1.22.0
+        with:
+          args: --fail-fast --config detekt.yml
+
   debug-build:
-    needs: [ unit-tests ]
+    needs: [ unit-tests, detekt ]
     runs-on: ubuntu-latest
 
     steps:
