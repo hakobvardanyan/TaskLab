@@ -9,7 +9,7 @@ subprojects {
         ignoreFailures = false
         parallel = true
         source = files("src/main/java", "src/main/kotlin")
-        baseline file("detekt-baseline-globalDebug.xml")
+        baseline file("detekt-baseline.xml")
         config.setFrom(files("${project.rootProject.projectDir}/config/detekt/detekt.yml"))
     }
 }
