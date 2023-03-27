@@ -87,7 +87,7 @@ complexity:
     threshold: 10
     includeStaticDeclarations: false
     includePrivateDeclarations: false
-  ComplexMethod:
+  CyclomaticComplexMethod:
     active: true
     threshold: 15
     ignoreSingleWhenExpression: false
@@ -394,8 +394,6 @@ potential-bugs:
     active: true
   DoubleMutabilityForCollection:
     active: true
-  DuplicateCaseInWhenExpression:
-    active: true
   EqualsAlwaysReturnsTrueOrFalse:
     active: true
   EqualsWithHashCodeExist:
@@ -408,7 +406,7 @@ potential-bugs:
     active: false
   IgnoredReturnValue:
     active: false
-    restrictToAnnotatedMethods: true
+    restrictToConfig: true
     returnValueAnnotations:
       - '*.CheckResult'
       - '*.CheckReturnValue'
@@ -432,13 +430,8 @@ potential-bugs:
     ignoreOnClassesPattern: ''
   MapGetWithNotNullAssertionOperator:
     active: false
-  MissingWhenCase:
-    active: true
-    allowElseExpression: true
   NullableToStringCall:
     active: false
-  RedundantElseInWhen:
-    active: true
   UnconditionalJumpStatementInLoop:
     active: false
   UnnecessaryNotNullOperator:
@@ -469,7 +462,7 @@ style:
     active: true
   DataClassContainsFunctions:
     active: false
-    conversionFunctionPrefix: 'to'
+    conversionFunctionPrefix: [ to ]
   DataClassShouldBeImmutable:
     active: true
   DestructuringDeclarationWithTooManyEntries:
@@ -502,12 +495,6 @@ style:
     methods:
       - 'kotlin.io.print'
       - 'kotlin.io.println'
-  ForbiddenPublicDataClass:
-    active: false
-    excludes: ['**']
-    ignorePackages:
-      - '*.internal'
-      - '*.internal.*'
   ForbiddenVoid:
     active: false
     ignoreOverridden: false
@@ -516,15 +503,8 @@ style:
     active: true
     ignoreOverridableFunction: true
     ignoreActualFunction: true
-    excludedFunctions: ''
-    ignoreAnnotated:
-      - 'dagger.Provides'
-  LibraryCodeMustSpecifyReturnType:
-    active: true
-    excludes: ['**']
-  LibraryEntitiesShouldNotBePublic:
-    active: false
-    excludes: ['**']
+    excludedFunctions: []
+    ignoreAnnotated: [ 'dagger.Provides' ]
   LoopWithTooManyJumpStatements:
     active: true
     maxJumpCount: 1
@@ -589,7 +569,7 @@ style:
   ReturnCount:
     active: true
     max: 2
-    excludedFunctions: 'equals'
+    excludedFunctions: [ 'equals' ]
     excludeLabeled: false
     excludeReturnFromLambda: true
     excludeGuardClauses: false
@@ -669,3 +649,12 @@ style:
     excludeImports:
       - 'java.util.*'
       - 'kotlinx.android.synthetic.*'
+
+#libraries:
+#  active: true
+#  ForbiddenPublicDataClass:
+#    active: false
+#  LibraryEntitiesShouldNotBePublic:
+#    active: false
+#  LibraryCodeMustSpecifyReturnType:
+#    active: true
