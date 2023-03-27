@@ -1,0 +1,15 @@
+/*
+ * (c) 2021 Picsart, Inc.  All rights reserved.
+ */
+
+subprojects {
+    apply plugin: "io.gitlab.arturbosch.detekt"
+
+    detekt {
+        ignoreFailures = false
+        parallel = true
+        source = files("src/main/java", "src/main/kotlin")
+        baseline file("detekt-baseline.xml")
+        config.setFrom(files("${project.rootProject.projectDir}/config/detekt/detekt.yml"))
+    }
+}
