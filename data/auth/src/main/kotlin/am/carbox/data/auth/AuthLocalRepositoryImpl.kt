@@ -2,11 +2,13 @@ package am.carbox.data.auth
 
 import com.google.firebase.auth.PhoneAuthProvider
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
+import javax.inject.Inject
 
-class AuthLocalRepositoryImpl : AuthLocalRepository {
+class AuthLocalRepositoryImpl @Inject constructor() : AuthLocalRepository {
 
     override val isSignedIn: Flow<Boolean>
-        get() = TODO("Not yet implemented")
+        get() = flowOf(true)
 
     override val firebaseUserId: Flow<String>
         get() = TODO("Not yet implemented")

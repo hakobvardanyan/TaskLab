@@ -3,7 +3,9 @@ package am.carbox.delivery
 import am.carbox.feature.splash.presentation.SplashFragment
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CarBoxActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

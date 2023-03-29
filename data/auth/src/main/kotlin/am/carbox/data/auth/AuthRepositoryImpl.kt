@@ -2,13 +2,15 @@ package am.carbox.data.auth
 
 import am.carbox.data.auth.model.AuthState
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class AuthRepositoryImpl(
-
+class AuthRepositoryImpl @Inject constructor(
+    private val authLocalRepository: AuthLocalRepository,
+    private val authRemoteRepository: AuthRemoteRepository
 ) : AuthRepository {
 
     override val isSignedIn: Flow<Boolean>
-        get() = TODO("Not yet implemented")
+        get() = authLocalRepository.isSignedIn
 
     override val verificationId: Flow<String>
         get() = TODO("Not yet implemented")

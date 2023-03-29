@@ -8,11 +8,12 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthProvider
 import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class AuthRemoteRepositoryImpl(
-    private val activity: Activity?,
+class AuthRemoteRepositoryImpl @Inject constructor(
+//    private val activity: Activity?,
     private val firebaseAuth: FirebaseAuth,
-    private val authApiService: AuthApiService,
+//    private val authApiService: AuthApiService,
     private val firebaseMessaging: FirebaseMessaging
 ) : AuthRemoteRepository {
 
