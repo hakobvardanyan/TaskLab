@@ -68,6 +68,9 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_11.toString()
     }
+    packagingOptions {
+        resources.excludes += "DebugProbesKt.bin"
+    }
 }
 
 dependencies {
