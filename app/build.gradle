@@ -71,7 +71,7 @@ android {
 }
 
 dependencies {
-    implementation project(":feature:splash")
+    implementation project(':feature:splash:presentation')
     implementation project(":feature:auth")
     implementation project(":feature:car-registration")
 
