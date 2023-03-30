@@ -1,6 +1,6 @@
 package am.carbox.feature.splash.presentation
 
-import am.carbox.feature.splash.domain.TestUseCase
+//import am.carbox.feature.splash.domain.TestUseCase
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,12 +11,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SplashViewModel @Inject constructor(
-    private val useCase: TestUseCase
+//    private val useCase: TestUseCase
 ) : ViewModel() {
 
     fun test() {
-        useCase.exec()
-            .onEach { Log.d("::::: ", "Success") }
-            .launchIn(viewModelScope)
+//        useCase.exec()
+//            .onEach { Log.d("::::: ", "Success") }
+//            .launchIn(viewModelScope)
     }
 }

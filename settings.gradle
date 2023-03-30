@@ -21,7 +21,6 @@ include ':core:extensions-kotlin'
 include ':core:extensions-android'
 
 include ':feature:auth'
-include ':feature:splash:domain'
 include ':feature:splash:presentation'
 include ':feature:car-registration'
 
