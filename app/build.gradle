@@ -83,7 +83,6 @@ dependencies {
     implementation project(':feature:splash:presentation')
     implementation project(":feature:auth")
     implementation project(":feature:car-registration")
-    implementation project(":feature:splash:domain:di")
     implementation project(":data:auth:di")
 
     implementation "com.google.dagger:hilt-android:2.44.2"

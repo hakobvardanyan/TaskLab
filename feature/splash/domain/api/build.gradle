@@ -1,5 +1,0 @@
-apply from: "$rootProject.projectDir/android-library.gradle"
-
-dependencies {
-    implementation 'androidx.core:core-ktx:1.9.0'
-}
