@@ -17,14 +17,14 @@ include ':app'
 
 include ':core:common'
 include ':core:network'
-include ':core:extensions-kotlin'
-include ':core:extensions-android'
+include ':core:extensions'
 
 include ':feature:auth'
 include ':feature:splash:presentation'
 include ':feature:car-registration'
 
+include ':feature:splash:domain'
+
 include ':data:user'
 include ':data:car'
 include ':data:auth'
-include ':feature:splash:domain'
