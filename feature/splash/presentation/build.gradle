@@ -6,8 +6,7 @@ plugins {
 apply from: "$rootProject.projectDir/android-library.gradle"
 
 dependencies {
-    implementation project(":feature:splash:domain")
-
+    implementation project(':feature:splash:domain')
     implementation "com.google.dagger:hilt-android:2.44.2"
     kapt "com.google.dagger:hilt-compiler:2.44"
 

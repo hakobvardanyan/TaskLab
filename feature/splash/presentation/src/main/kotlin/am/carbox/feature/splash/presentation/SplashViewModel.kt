@@ -1,6 +1,6 @@
 package am.carbox.feature.splash.presentation
 
-import am.carbox.splash.domain.TestUseCase
+import am.carbox.feature.splash.domain.TestUseCase
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

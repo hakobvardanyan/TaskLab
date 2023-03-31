@@ -1,4 +1,4 @@
-package am.carbox.splash.domain
+package am.carbox.feature.splash.domain
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("am.carbox.splash.domain.impl.test", appContext.packageName)
+        assertEquals("am.carbox.feature.splash.domain.test", appContext.packageName)
     }
 }

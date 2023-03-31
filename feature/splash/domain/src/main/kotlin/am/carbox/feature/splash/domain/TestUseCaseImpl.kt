@@ -1,4 +1,4 @@
-package am.carbox.splash.domain
+package am.carbox.feature.splash.domain
 
 import am.carbox.data.auth.AuthRepository
 import android.util.Log
