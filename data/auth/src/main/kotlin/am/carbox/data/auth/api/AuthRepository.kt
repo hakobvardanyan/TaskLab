@@ -1,4 +1,4 @@
-package am.carbox.data.auth
+package am.carbox.data.auth.api
 
 import am.carbox.data.auth.model.AuthState
 import kotlinx.coroutines.flow.Flow

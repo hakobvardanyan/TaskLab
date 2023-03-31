@@ -1,14 +1,15 @@
 package am.carbox.data.auth.impl
 
-import am.carbox.data.auth.AuthRepository
+import am.carbox.data.auth.api.AuthLocalRepository
+import am.carbox.data.auth.api.AuthRemoteRepository
+import am.carbox.data.auth.api.AuthRepository
 import am.carbox.data.auth.model.AuthState
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOf
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class AuthRepositoryImpl @Inject constructor(
+internal class AuthRepositoryImpl @Inject constructor(
     private val authLocalRepository: AuthLocalRepository,
     private val authRemoteRepository: AuthRemoteRepository,
 ) : AuthRepository {

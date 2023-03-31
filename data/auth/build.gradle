@@ -6,13 +6,15 @@ plugins {
 apply from: "$rootProject.projectDir/android-library.gradle"
 
 dependencies {
-    implementation project(":data:auth:api")
-    implementation project(":data:auth:impl")
+    implementation project(":core:network")
 
     implementation "com.google.dagger:hilt-android:2.44.2"
     kapt "com.google.dagger:hilt-compiler:2.44"
 
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
     implementation 'com.google.firebase:firebase-auth-ktx:21.1.0'
+    implementation 'com.google.code.gson:gson:2.8.9'
     implementation 'com.google.firebase:firebase-messaging-ktx:23.1.2'
 
     testImplementation 'junit:junit:4.13.2'

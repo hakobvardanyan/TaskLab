@@ -1,5 +1,6 @@
 package am.carbox.data.auth.impl
 
+import am.carbox.data.auth.api.AuthLocalRepository
 import com.google.firebase.auth.PhoneAuthProvider
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
@@ -7,7 +8,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class AuthLocalRepositoryImpl @Inject constructor() : AuthLocalRepository {
+internal class AuthLocalRepositoryImpl @Inject constructor() : AuthLocalRepository {
 
     override val isSignedIn: Flow<Boolean>
         get() = flowOf(true)

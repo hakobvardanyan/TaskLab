@@ -26,7 +26,5 @@ include ':feature:car-registration'
 
 include ':data:user'
 include ':data:car'
-include ':data:auth:di'
-include ':data:auth:api'
-include ':data:auth:impl'
+include ':data:auth'
 include ':feature:splash:domain'

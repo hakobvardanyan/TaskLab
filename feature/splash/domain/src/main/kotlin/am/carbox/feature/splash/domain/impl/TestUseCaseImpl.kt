@@ -1,6 +1,6 @@
 package am.carbox.feature.splash.domain.impl
 
-import am.carbox.data.auth.AuthRepository
+import am.carbox.data.auth.api.AuthRepository
 import am.carbox.feature.splash.domain.api.TestUseCase
 import android.util.Log
 import javax.inject.Inject

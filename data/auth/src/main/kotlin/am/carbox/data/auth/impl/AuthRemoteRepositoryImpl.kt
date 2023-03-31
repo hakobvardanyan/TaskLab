@@ -1,5 +1,6 @@
 package am.carbox.data.auth.impl
 
+import am.carbox.data.auth.api.AuthRemoteRepository
 import am.carbox.data.auth.model.AuthState
 import am.carbox.data.auth.model.SignInApiDto
 import am.carbox.data.auth.model.SignInRequestDto
@@ -11,7 +12,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class AuthRemoteRepositoryImpl @Inject constructor(
+internal class AuthRemoteRepositoryImpl @Inject constructor(
 //    private val activity: Activity?,
     private val firebaseAuth: FirebaseAuth,
 //    private val authApiService: AuthApiService,

@@ -1,9 +1,9 @@
-package am.carbox.data.auth.impl
+package am.carbox.data.auth.api
 
 import com.google.firebase.auth.PhoneAuthProvider
 import kotlinx.coroutines.flow.Flow
 
-interface AuthLocalRepository {
+internal interface AuthLocalRepository {
     val isSignedIn: Flow<Boolean>
     val firebaseUserId: Flow<String>
     val firebaseIdToken: Flow<String>
