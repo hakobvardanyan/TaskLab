@@ -1,5 +1,6 @@
 package am.carbox.core.network.di
 
+import am.carbox.core.io.preference.SensitivePreferencesService
 import am.carbox.core.network.interceptor.HeaderAuthTokenInterceptor
 import am.carbox.core.network.interceptor.HeaderDeviceInterceptor
 import am.carbox.core.network.interceptor.HeaderPlatformInterceptor
@@ -69,8 +70,10 @@ internal object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideAuthTokenHeaderInterceptor(): HeaderAuthTokenInterceptor {
-        return HeaderAuthTokenInterceptor()
+    fun provideAuthTokenHeaderInterceptor(
+        preferencesService: SensitivePreferencesService
+    ): HeaderAuthTokenInterceptor {
+        return HeaderAuthTokenInterceptor(preferencesService)
     }
 
     @Provides

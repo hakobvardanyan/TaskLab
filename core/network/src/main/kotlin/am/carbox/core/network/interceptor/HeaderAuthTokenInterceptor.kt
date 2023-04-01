@@ -1,5 +1,6 @@
 package am.carbox.core.network.interceptor
 
+import am.carbox.core.io.preference.SensitivePreferencesService
 import okhttp3.Interceptor
 import okhttp3.Response
 import javax.inject.Inject
@@ -8,6 +9,7 @@ import javax.inject.Singleton
 @Singleton
 internal class HeaderAuthTokenInterceptor @Inject constructor(
 //    private val securePreferences: SecurePrefsWrapper
+    private val preferencesService: SensitivePreferencesService
 ) : Interceptor {
 
     private val authToken: String

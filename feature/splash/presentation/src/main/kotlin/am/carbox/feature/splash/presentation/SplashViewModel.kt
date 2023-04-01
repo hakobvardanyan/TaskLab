@@ -14,6 +14,6 @@ class SplashViewModel @Inject constructor(
 ) : ViewModel() {
 
     fun test(activity: Activity) {
-        useCase.test(activity).launchIn(viewModelScope)
+//        useCase.test(activity).launchIn(viewModelScope)
     }
 }

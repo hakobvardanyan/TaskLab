@@ -15,6 +15,7 @@ dependencyResolutionManagement {
 rootProject.name = "CarBox"
 include ':app'
 
+include ':core:io'
 include ':core:common'
 include ':core:network'
 include ':core:extensions'
@@ -25,6 +26,6 @@ include ':feature:car-registration'
 
 include ':feature:splash:domain'
 
-include ':data:user'
 include ':data:car'
+include ':data:user'
 include ':data:auth'
