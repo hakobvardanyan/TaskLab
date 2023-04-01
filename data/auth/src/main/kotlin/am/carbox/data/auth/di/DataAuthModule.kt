@@ -1,16 +1,18 @@
 package am.carbox.data.auth.di
 
+import am.carbox.data.auth.service.AuthApiService
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.messaging.FirebaseMessaging
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import retrofit2.Retrofit
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object DataAuthModule {
+internal object DataAuthModule {
 
     @Singleton
     @Provides
@@ -22,5 +24,11 @@ object DataAuthModule {
     @Provides
     fun profileFirebaseMessaging(): FirebaseMessaging {
         return FirebaseMessaging.getInstance()
+    }
+
+    @Singleton
+    @Provides
+    fun profileAuthApiService(retrofit: Retrofit): AuthApiService {
+        return retrofit.create(AuthApiService::class.java)
     }
 }

@@ -1,14 +1,14 @@
 package am.carbox.data.auth.api
 
 import am.carbox.data.auth.model.AuthState
-import am.carbox.data.auth.model.SignInApiDto
-import am.carbox.data.auth.model.SignInRequestDto
+import am.carbox.data.auth.model.SignInResponse
+import am.carbox.data.auth.model.SignInRequest
 import android.app.Activity
 import com.google.firebase.auth.PhoneAuthProvider.ForceResendingToken
 import kotlinx.coroutines.flow.Flow
 
 internal interface AuthRemoteRepository {
-    fun signIn(body: SignInRequestDto): Flow<SignInApiDto>
+    fun signIn(body: SignInRequest): Flow<SignInResponse>
 
     fun signOut(): Flow<Boolean>
 

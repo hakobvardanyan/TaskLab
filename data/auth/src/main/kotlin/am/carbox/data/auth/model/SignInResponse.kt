@@ -2,7 +2,7 @@ package am.carbox.data.auth.model
 
 import com.google.gson.annotations.SerializedName
 
-data class SignInApiDto(
+data class SignInResponse(
     @SerializedName("token")
     val token: String? = null,
     @SerializedName("regenerateToken")

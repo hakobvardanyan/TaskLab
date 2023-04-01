@@ -1,9 +1,11 @@
 package am.carbox.data.auth.impl
 
+import am.carbox.core.network.parser.BaseResponseParser
 import am.carbox.data.auth.api.AuthRemoteRepository
 import am.carbox.data.auth.model.AuthState
-import am.carbox.data.auth.model.SignInApiDto
-import am.carbox.data.auth.model.SignInRequestDto
+import am.carbox.data.auth.model.SignInResponse
+import am.carbox.data.auth.model.SignInRequest
+import am.carbox.data.auth.service.AuthApiService
 import android.app.Activity
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
@@ -14,9 +16,7 @@ import com.google.firebase.auth.PhoneAuthProvider.OnVerificationStateChangedCall
 import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.coroutines.channels.ProducerScope
 import kotlinx.coroutines.channels.awaitClose
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.callbackFlow
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -24,15 +24,14 @@ import javax.inject.Singleton
 @Singleton
 internal class AuthRemoteRepositoryImpl @Inject constructor(
     private val firebaseAuth: FirebaseAuth,
-//    private val authApiService: AuthApiService,
+    private val authApiService: AuthApiService,
+    private val responseParser: BaseResponseParser,
     private val firebaseMessaging: FirebaseMessaging
 ) : AuthRemoteRepository {
 
-    override fun signIn(body: SignInRequestDto): Flow<SignInApiDto> = flow {
-//        emit(authApiService.signIn(body))
-//    }.flatMapMerge {
-//        parseResponse(it)
-    }
+    override fun signIn(body: SignInRequest): Flow<SignInResponse> = flow {
+       // emit(authApiService.signIn(body))
+    }//.map(responseParser::parse)
 
     override fun signOut(): Flow<Boolean> = flow {
 //        firebaseAuth.signOut()

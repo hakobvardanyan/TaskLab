@@ -2,7 +2,7 @@ package am.carbox.data.auth.model
 
 import com.google.gson.annotations.SerializedName
 
-data class SignInRequestDto(
+data class SignInRequest(
     @SerializedName("phone")
     val phone: String,
     @SerializedName("userId")
