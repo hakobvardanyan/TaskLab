@@ -1,6 +1,7 @@
 package am.carbox.data.auth.api
 
 import am.carbox.data.auth.model.AuthState
+import android.app.Activity
 import kotlinx.coroutines.flow.Flow
 
 interface AuthRepository {
@@ -13,7 +14,7 @@ interface AuthRepository {
     fun signOut(): Flow<Boolean>
     fun getFirebaseIdToken(): Flow<String>
     fun consumeFirebasePushToken(): Flow<String>
-    fun startVerification(phoneNumber: String): Flow<AuthState>
+    fun startVerification(activity: Activity, phoneNumber: String): Flow<AuthState>
     fun resendVerification(phoneNumber: String): Flow<AuthState>
     fun verifyVerificationCode(verificationId: String, smsCode: String): Flow<AuthState>
 }

@@ -21,6 +21,6 @@ class SplashFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        viewModel.test()
+        viewModel.test(requireActivity())
     }
 }
