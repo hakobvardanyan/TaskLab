@@ -1,10 +1,11 @@
 package am.carbox.data.auth.impl
 
+import am.carbox.core.common.logger.Logger
 import am.carbox.core.network.parser.BaseResponseParser
 import am.carbox.data.auth.api.AuthRemoteRepository
 import am.carbox.data.auth.model.AuthState
-import am.carbox.data.auth.model.SignInResponse
 import am.carbox.data.auth.model.SignInRequest
+import am.carbox.data.auth.model.SignInResponse
 import am.carbox.data.auth.service.AuthApiService
 import android.app.Activity
 import com.google.firebase.FirebaseException
@@ -26,44 +27,47 @@ internal class AuthRemoteRepositoryImpl @Inject constructor(
     private val firebaseAuth: FirebaseAuth,
     private val authApiService: AuthApiService,
     private val responseParser: BaseResponseParser,
-    private val firebaseMessaging: FirebaseMessaging
+    private val firebaseMessaging: FirebaseMessaging,
 ) : AuthRemoteRepository {
 
     override fun signIn(body: SignInRequest): Flow<SignInResponse> = flow {
-       // emit(authApiService.signIn(body))
-    }//.map(responseParser::parse)
+        Logger.debug("$TAG.signIn() body = $body")
+        emit(authApiService.signIn(body))
+    }.map(responseParser::parse)
 
     override fun signOut(): Flow<Boolean> = flow {
-//        firebaseAuth.signOut()
-//        emit(authApiService.signOut().status)
-//    }.catch {
-//        emit(false)
+        Logger.debug("$TAG.signOut()")
+        firebaseAuth.signOut()
+        emit(authApiService.signOut().status)
+    }.catch {
+        emit(false)
     }
 
     override fun getFirebaseIdToken(): Flow<String> = callbackFlow {
+        Logger.debug("$TAG.getFirebaseIdToken()")
         firebaseAuth.currentUser?.let { user ->
             user.getIdToken(true)
                 .addOnSuccessListener { trySend(it.token.orEmpty()) }
                 .addOnFailureListener { close(it) }
         } ?: trySend("")
-        awaitClose {
-//            Logger.warning("$tagName.getFirebaseIdToken() scope has closed")
-        }
+        awaitClose { Logger.warning("$TAG.getFirebaseIdToken() scope has closed") }
     }
 
     override fun consumeFirebasePushToken(): Flow<String> = callbackFlow {
+        Logger.debug("$TAG.consumeFirebasePushToken()")
         firebaseMessaging.token.addOnSuccessListener { result ->
             result?.let { trySend(it) }
-        }.addOnFailureListener { close(it) }
-        awaitClose {
-//            Logger.warning("$tagName.consumeFirebasePushToken() producer scope has closed")
+        }.addOnFailureListener {
+            close(it)
         }
+        awaitClose { Logger.warning("$TAG.consumeFirebasePushToken() producer scope has closed") }
     }
 
     override fun startVerification(
         activity: Activity,
-        phone: String
+        phone: String,
     ): Flow<AuthState> = callbackFlow {
+        Logger.debug("$TAG.startVerification()")
         val options = PhoneAuthOptions.newBuilder(firebaseAuth)
             .setPhoneNumber(phone)
             .setTimeout(TIMEOUT_SECONDS, TimeUnit.SECONDS)
@@ -71,16 +75,15 @@ internal class AuthRemoteRepositoryImpl @Inject constructor(
             .setCallbacks(createCallback(this))
             .build()
         PhoneAuthProvider.verifyPhoneNumber(options)
-        awaitClose {
-//            Logger.warning("$tagName.startVerification() producer scope has closed")
-        }
+        awaitClose { Logger.warning("$TAG.startVerification() producer scope has closed") }
     }
 
     override fun resendVerification(
         activity: Activity,
         phone: String,
-        resendToken: PhoneAuthProvider.ForceResendingToken?
+        resendToken: PhoneAuthProvider.ForceResendingToken?,
     ): Flow<AuthState> = callbackFlow {
+        Logger.debug("$TAG.resendVerification()")
         resendToken?.let { resendToken ->
             val options = PhoneAuthOptions.newBuilder(firebaseAuth)
                 .setPhoneNumber(phone)
@@ -91,15 +94,14 @@ internal class AuthRemoteRepositoryImpl @Inject constructor(
                 .build()
             PhoneAuthProvider.verifyPhoneNumber(options)
         }
-        awaitClose {
-//            Logger.warning("$tagName.resendVerification() producer scope has closed")
-        }
+        awaitClose { Logger.warning("$TAG.resendVerification() producer scope has closed") }
     }
 
     override fun verifyVerificationCode(
         verificationId: String,
-        smsCode: String
+        smsCode: String,
     ): Flow<AuthState> = callbackFlow {
+        Logger.debug("$TAG.verifyVerificationCode() verificationId = $verificationId smsCode = $smsCode")
         val credential = PhoneAuthProvider.getCredential(verificationId, smsCode)
         firebaseAuth.signInWithCredential(credential)
             .addOnSuccessListener {
@@ -109,14 +111,15 @@ internal class AuthRemoteRepositoryImpl @Inject constructor(
             }
             .addOnFailureListener { close(it) }
         awaitClose {
-//            Logger.warning("$tagName.verifyVerificationCode() producer scope has closed")
+            Logger.warning("$TAG.verifyVerificationCode() producer scope has closed")
         }
     }
 
     private fun createCallback(
-        scope: ProducerScope<AuthState>
+        scope: ProducerScope<AuthState>,
     ) = object : OnVerificationStateChangedCallbacks() {
         override fun onVerificationCompleted(phoneAuthCredential: PhoneAuthCredential) {
+            Logger.debug("$TAG.onVerificationCompleted()")
             scope.trySend(AuthState.VerificationCompleted)
             firebaseAuth.signInWithCredential(phoneAuthCredential)
                 .addOnSuccessListener {
@@ -128,6 +131,7 @@ internal class AuthRemoteRepositoryImpl @Inject constructor(
         }
 
         override fun onVerificationFailed(exception: FirebaseException) {
+            Logger.exception(exception, "$TAG.onVerificationFailed()")
             scope.close(exception)
         }
 
@@ -136,28 +140,25 @@ internal class AuthRemoteRepositoryImpl @Inject constructor(
             token: PhoneAuthProvider.ForceResendingToken,
         ) {
             super.onCodeSent(verificationId, token)
+            Logger.debug("$TAG.onCodeSent() verificationId = $verificationId token = $token")
             scope.trySend(AuthState.CodeSent(verificationId, token))
         }
 
         override fun onCodeAutoRetrievalTimeOut(verificationId: String) {
             super.onCodeAutoRetrievalTimeOut(verificationId)
+            Logger.debug("$TAG.onCodeAutoRetrievalTimeOut() verificationId = $verificationId")
             scope.trySend(AuthState.Timeout(verificationId))
         }
     }
 
     private fun getFirebaseIdToken(
-        firebaseUserId: String,
-        firebaseUserPhone: String,
-        scope: ProducerScope<AuthState>
+        userId: String,
+        userPhone: String,
+        scope: ProducerScope<AuthState>,
     ) {
+        Logger.debug("$TAG.getFirebaseIdToken() userId = $userId userPhone = $userPhone")
         firebaseAuth.currentUser?.getIdToken(true)?.addOnCompleteListener {
-            scope.trySend(
-                AuthState.SignInCompleted(
-                    firebaseUserId,
-                    it.result?.token.orEmpty(),
-                    firebaseUserPhone
-                )
-            )
+            scope.trySend(AuthState.SignInCompleted(userId, it.result?.token.orEmpty(), userPhone))
         }
     }
 

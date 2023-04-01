@@ -1,6 +1,8 @@
 package am.carbox.core.network.interceptor
 
 import am.carbox.core.io.preference.SensitivePreferencesService
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
 import okhttp3.Response
 import javax.inject.Inject
@@ -11,16 +13,9 @@ internal class HeaderAuthTokenInterceptor @Inject constructor(
     private val preferencesService: SensitivePreferencesService
 ) : Interceptor {
 
-    private val authToken: String
-        get() = ""
-//    try {
-//            securePreferences.authToken
-//        } catch (throwable: Throwable) {
-//            Logger.exception(throwable, "$TAG.authToken - ${throwable.message}")
-//            String.EMPTY
-//        }
 
     override fun intercept(chain: Interceptor.Chain): Response {
+        val authToken = runBlocking { preferencesService.authToken.first() }
         if (authToken.isNotEmpty()) {
             val authRequest = chain
                 .request()
