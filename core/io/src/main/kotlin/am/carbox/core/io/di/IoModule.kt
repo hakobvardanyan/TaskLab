@@ -16,6 +16,9 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 internal object IoModule {
 
+    private const val NAME_SHARED_PREFERENCES = "shared_preferences_store"
+    private const val NAME_SENSITIVE_PREFERENCES = "sensitive_preferences_store"
+
     @Provides
     @Singleton
     @SensitivePreferences
@@ -42,7 +45,4 @@ internal object IoModule {
     ): DataStore<Preferences> = PreferenceDataStoreFactory.create {
         context.preferencesDataStoreFile(name)
     }
-
-    private const val NAME_SHARED_PREFERENCES = "shared_preferences_store"
-    private const val NAME_SENSITIVE_PREFERENCES = "sensitive_preferences_store"
 }
