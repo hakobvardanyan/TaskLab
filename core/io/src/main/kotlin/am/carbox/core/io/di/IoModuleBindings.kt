@@ -2,6 +2,8 @@ package am.carbox.core.io.di
 
 import am.carbox.core.io.preference.SensitivePreferencesService
 import am.carbox.core.io.preference.SensitivePreferencesServiceImpl
+import am.carbox.core.io.preference.SharedPreferencesService
+import am.carbox.core.io.preference.SharedPreferencesServiceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -17,4 +19,10 @@ internal interface IoModuleBindings {
     fun bindSensitivePreferences(
         implementation: SensitivePreferencesServiceImpl
     ): SensitivePreferencesService
+
+    @Binds
+    @Singleton
+    fun bindSharedPreferences(
+        implementation: SharedPreferencesServiceImpl
+    ): SharedPreferencesService
 }

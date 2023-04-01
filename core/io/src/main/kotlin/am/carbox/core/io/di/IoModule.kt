@@ -21,28 +21,28 @@ internal object IoModule {
     @SensitivePreferences
     fun provideSensitivePreferencesDataStore(
         @ApplicationContext
-        context: Context,
+        context: Context
     ): DataStore<Preferences> {
-        return createSataStore(context, NAME_SENSITIVE_PREFERENCES)
+        return createDataStore(context, NAME_SENSITIVE_PREFERENCES)
     }
 
     @Provides
     @Singleton
-    @StandardPreferences
+    @SharedPreferences
     fun provideStandardPreferencesDataStore(
         @ApplicationContext
-        context: Context,
+        context: Context
     ): DataStore<Preferences> {
-        return createSataStore(context, NAME_SHARED_PREFERENCES)
+        return createDataStore(context, NAME_SHARED_PREFERENCES)
     }
 
-    private fun createSataStore(
+    private fun createDataStore(
         context: Context,
-        name: String,
+        name: String
     ): DataStore<Preferences> = PreferenceDataStoreFactory.create {
         context.preferencesDataStoreFile(name)
     }
 
-    private const val NAME_SHARED_PREFERENCES = "sshared_preferences_store"
+    private const val NAME_SHARED_PREFERENCES = "shared_preferences_store"
     private const val NAME_SENSITIVE_PREFERENCES = "sensitive_preferences_store"
 }

@@ -8,7 +8,6 @@ import javax.inject.Singleton
 
 @Singleton
 internal class HeaderAuthTokenInterceptor @Inject constructor(
-//    private val securePreferences: SecurePrefsWrapper
     private val preferencesService: SensitivePreferencesService
 ) : Interceptor {
 
