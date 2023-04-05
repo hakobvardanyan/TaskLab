@@ -3,15 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="am.carbox.feature.splash.SplashFragment">
+    tools:context="am.carbox.feature.auth.LoginFragment">
 
     <TextView
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:textSize="30sp"
-        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Splash Fragment" />
-
+        android:gravity="center"
+        android:text="Login Fragment"
+        android:textSize="30sp" />
 </FrameLayout>

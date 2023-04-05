@@ -1,4 +1,4 @@
-package am.carbox.feature.splash.presentation
+package am.carbox.feature.splash
 
 import am.carbox.feature.splash.domain.api.TestUseCase
 import android.app.Activity
