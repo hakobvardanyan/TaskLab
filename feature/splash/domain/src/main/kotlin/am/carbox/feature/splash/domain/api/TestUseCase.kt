@@ -1,6 +1,6 @@
 package am.carbox.feature.splash.domain.api
 
-import am.carbox.data.auth.model.AuthState
+import com.tasklab.data.auth.model.AuthState
 import android.app.Activity
 import kotlinx.coroutines.flow.Flow
 

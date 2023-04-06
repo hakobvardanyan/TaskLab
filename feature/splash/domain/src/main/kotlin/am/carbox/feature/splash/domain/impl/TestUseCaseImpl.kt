@@ -1,7 +1,7 @@
 package am.carbox.feature.splash.domain.impl
 
-import am.carbox.data.auth.api.AuthRepository
-import am.carbox.data.auth.model.AuthState
+import com.tasklab.data.auth.api.AuthRepository
+import com.tasklab.data.auth.model.AuthState
 import am.carbox.feature.splash.domain.api.TestUseCase
 import android.app.Activity
 import android.util.Log
