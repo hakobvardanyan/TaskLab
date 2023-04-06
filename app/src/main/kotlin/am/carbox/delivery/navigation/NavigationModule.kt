@@ -1,6 +1,6 @@
 package am.carbox.delivery.navigation
 
-import am.carbox.delivery.CarBoxActivity
+import am.carbox.delivery.SingleActivity
 import am.carbox.delivery.R
 import android.content.Context
 import androidx.navigation.NavController
@@ -20,6 +20,6 @@ object NavigationModule {
         @ActivityContext
         context: Context,
     ): NavController {
-        return (context as CarBoxActivity).findNavController(R.id.fragment_container)
+        return (context as SingleActivity).findNavController(R.id.fragment_container)
     }
 }
