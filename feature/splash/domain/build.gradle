@@ -4,11 +4,14 @@ plugins {
 }
 
 apply from: "$rootProject.projectDir/android-library.gradle"
+android {
+    namespace 'am.carbox.feature.splash.domain'
+}
 
 dependencies {
     implementation project(':data:auth')
-    implementation 'androidx.core:core-ktx:1.9.0'
-    implementation "com.google.dagger:hilt-android:2.44.2"
+    implementation 'androidx.core:core-ktx:1.10.1'
+    implementation "com.google.dagger:hilt-android:2.46"
     kapt "com.google.dagger:hilt-compiler:2.44"
 
     testImplementation 'junit:junit:4.13.2'
