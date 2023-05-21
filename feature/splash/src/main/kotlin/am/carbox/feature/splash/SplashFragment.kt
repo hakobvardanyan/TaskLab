@@ -1,6 +1,5 @@
 package am.carbox.feature.splash
 
-import am.carbox.feature.splash.presentation.R
 import android.content.Context
 import android.os.Bundle
 import android.util.AttributeSet
