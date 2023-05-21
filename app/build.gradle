@@ -84,7 +84,7 @@ kapt {
 
 dependencies {
     implementation project(':feature:splash')
-    implementation project(':feature:auth:presentation')
+    implementation project(':feature:auth')
     implementation project(':feature:car-registration')
 
     implementation 'com.google.dagger:hilt-android:2.46'

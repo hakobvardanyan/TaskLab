@@ -20,7 +20,7 @@ include ':core:common'
 include ':core:network'
 include ':core:extensions'
 
-include ':feature:auth:presentation'
+include ':feature:auth:'
 include ':feature:splash'
 include ':feature:car-registration'
 
