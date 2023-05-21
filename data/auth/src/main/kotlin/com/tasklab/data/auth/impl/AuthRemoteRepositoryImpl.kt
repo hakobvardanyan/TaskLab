@@ -1,7 +1,7 @@
 package com.tasklab.data.auth.impl
 
-import am.carbox.core.common.logger.Logger
-import am.carbox.core.network.parser.BaseResponseParser
+import am.tasklab.core.common.logger.Logger
+import am.tasklab.core.network.parser.BaseResponseParser
 import com.tasklab.data.auth.api.AuthRemoteRepository
 import com.tasklab.data.auth.model.AuthState
 import com.tasklab.data.auth.model.SignInRequest

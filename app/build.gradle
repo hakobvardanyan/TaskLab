@@ -14,12 +14,12 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    namespace 'am.carbox.delivery'
+    namespace 'am.tasklab'
     compileSdk 33
     buildToolsVersion = "33.0.1"
 
     defaultConfig {
-        applicationId "am.carbox.delivery"
+        applicationId "am.tasklab"
         minSdk 24
         targetSdk 33
         if (project.properties["VERSION_CODE"] != null) {

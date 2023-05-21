@@ -1,6 +1,6 @@
 apply from: "$rootProject.projectDir/android-library.gradle"
 android {
-    namespace 'am.carbox.core.common'
+    namespace 'am.tasklab.core.common'
 }
 
 dependencies {

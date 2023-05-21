@@ -1,6 +1,6 @@
 package com.tasklab.data.auth.service
 
-import am.carbox.core.network.model.BaseResponse
+import am.tasklab.core.network.model.BaseResponse
 import com.tasklab.data.auth.model.SignInResponse
 import com.tasklab.data.auth.model.SignInRequest
 import retrofit2.http.Body

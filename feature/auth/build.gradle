@@ -5,7 +5,7 @@ plugins {
 
 apply from: "$rootProject.projectDir/android-library.gradle"
 android {
-    namespace 'am.carbox.feature.auth.presentation'
+    namespace 'am.tasklab.feature.auth.presentation'
 }
 
 dependencies {

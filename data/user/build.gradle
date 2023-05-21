@@ -1,6 +1,6 @@
 apply from: "$rootProject.projectDir/android-library.gradle"
 android {
-    namespace 'am.carbox.data.user'
+    namespace 'am.tasklab.data.user'
 }
 
 dependencies {

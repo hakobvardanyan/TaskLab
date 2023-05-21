@@ -5,7 +5,7 @@ plugins {
 
 apply from: "$rootProject.projectDir/android-library.gradle"
 android {
-    namespace 'am.carbox.core.network'
+    namespace 'am.tasklab.core.network'
 }
 
 dependencies {

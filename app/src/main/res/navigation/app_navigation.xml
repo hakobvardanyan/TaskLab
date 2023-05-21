@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="am.carbox.feature.splash.SplashFragment"
+        android:name="am.tasklab.feature.splash.SplashFragment"
         android:label="SplashFragment" >
         <action
             android:id="@+id/action_splashFragment_to_loginFragment"
@@ -14,6 +14,6 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="am.carbox.feature.auth.LoginFragment"
+        android:name="am.tasklab.feature.auth.LoginFragment"
         android:label="LoginFragment" />
 </navigation>

@@ -1,6 +1,6 @@
 package impl
 
-import am.carbox.core.io.dispatchers.CarBoxDispatchers
+import am.tasklab.core.io.dispatchers.TaskLabDispatchers
 import api.GetUserByIdUseCase
 import com.tasklab.data.auth.api.AuthRepository
 import kotlinx.coroutines.flow.Flow
@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 internal class GetUserByIdUseCaseImpl @Inject constructor(
     private val repo: AuthRepository,
-    private val dispatchers: CarBoxDispatchers
+    private val dispatchers: TaskLabDispatchers
 ) : GetUserByIdUseCase {
 
     override fun invoke(userId: String): Flow<Any?> = flow {
