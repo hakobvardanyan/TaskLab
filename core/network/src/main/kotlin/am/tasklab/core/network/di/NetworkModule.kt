@@ -4,7 +4,6 @@ import am.tasklab.core.io.preference.SensitivePreferencesService
 import am.tasklab.core.network.interceptor.HeaderAuthTokenInterceptor
 import am.tasklab.core.network.interceptor.HeaderDeviceInterceptor
 import am.tasklab.core.network.interceptor.HeaderPlatformInterceptor
-import am.tasklab.core.network.interceptor.RefreshTokenInterceptor
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -54,14 +53,12 @@ internal object NetworkModule {
     @Singleton
     fun provideOkHttpClient(
         httpLoggingInterceptor: HttpLoggingInterceptor,
-        refreshTokenInterceptor: RefreshTokenInterceptor,
         deviceHeaderInterceptor: HeaderDeviceInterceptor,
         platformHeaderInterceptor: HeaderPlatformInterceptor,
         authTokenHeaderInterceptor: HeaderAuthTokenInterceptor
     ): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(httpLoggingInterceptor)
-            .addInterceptor(refreshTokenInterceptor)
             .addInterceptor(deviceHeaderInterceptor)
             .addInterceptor(platformHeaderInterceptor)
             .addInterceptor(authTokenHeaderInterceptor)
@@ -80,12 +77,6 @@ internal object NetworkModule {
     @Singleton
     fun providePlatformHeaderInterceptor(): HeaderPlatformInterceptor {
         return HeaderPlatformInterceptor()
-    }
-
-    @Provides
-    @Singleton
-    fun provideRefreshTokenInterceptor(): RefreshTokenInterceptor {
-        return RefreshTokenInterceptor()
     }
 
     @Provides
