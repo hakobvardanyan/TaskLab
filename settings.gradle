@@ -24,7 +24,7 @@ include ':feature:auth:presentation'
 include ':feature:splash:presentation'
 include ':feature:car-registration'
 
-include ':feature:splash:domain'
+include ':domain:user'
 
 include ':data:car'
 include ':data:user'

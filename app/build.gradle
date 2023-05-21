@@ -16,7 +16,7 @@ if (keystorePropertiesFile.exists()) {
 android {
     namespace 'am.carbox.delivery'
     compileSdk 33
-    buildToolsVersion "33.0.1"
+    buildToolsVersion = "33.0.1"
 
     defaultConfig {
         applicationId "am.carbox.delivery"
@@ -85,7 +85,7 @@ kapt {
 dependencies {
     implementation project(':feature:splash:presentation')
     implementation project(':feature:auth:presentation')
-    implementation project(":feature:car-registration")
+    implementation project(':feature:car-registration')
 
     implementation 'com.google.dagger:hilt-android:2.46'
     kapt 'com.google.dagger:hilt-compiler:2.46'
