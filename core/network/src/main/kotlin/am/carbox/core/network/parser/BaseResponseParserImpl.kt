@@ -1,5 +1,6 @@
 package am.carbox.core.network.parser
 
+import am.carbox.core.common.logger.Logger
 import am.carbox.core.network.exception.ApiException
 import am.carbox.core.network.model.BaseResponse
 import javax.inject.Inject
@@ -9,7 +10,7 @@ import javax.inject.Singleton
 internal class BaseResponseParserImpl @Inject constructor() : BaseResponseParser {
 
     override fun <T, R : BaseResponse<T>> parse(response: R): T {
-//        Logger.debug("$tagName.parseResponse response=$response")
+        Logger.debug("BaseResponseParserImpl.parseResponse response=$response")
         if (!response.status) {
             response.errorCode?.let {
                 throw ApiException.ServerException(it, response.errorMessage.orEmpty())
