@@ -1,3 +1,5 @@
+package am.tasklab.domain.user
+
 import org.junit.Test
 
 import org.junit.Assert.*

@@ -1,7 +1,7 @@
-package impl
+package am.tasklab.domain.user.impl
 
 import am.tasklab.core.io.dispatchers.TaskLabDispatchers
-import api.GetUserByIdUseCase
+import am.tasklab.domain.user.api.GetUserByIdUseCase
 import com.tasklab.data.auth.api.AuthRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

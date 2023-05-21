@@ -1,4 +1,4 @@
-package api
+package am.tasklab.domain.user.api
 
 import kotlinx.coroutines.flow.Flow
 

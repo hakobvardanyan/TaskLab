@@ -1,7 +1,7 @@
 package am.tasklab.feature.splash
 
 import am.tasklab.core.common.logger.Logger
-import api.GetUserByIdUseCase
+import am.tasklab.domain.user.api.GetUserByIdUseCase
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel

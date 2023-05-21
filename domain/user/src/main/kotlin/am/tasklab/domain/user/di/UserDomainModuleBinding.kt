@@ -1,11 +1,11 @@
-package di
+package am.tasklab.domain.user.di
 
-import api.GetUserByIdUseCase
+import am.tasklab.domain.user.api.GetUserByIdUseCase
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
-import impl.GetUserByIdUseCaseImpl
+import am.tasklab.domain.user.impl.GetUserByIdUseCaseImpl
 
 @Module
 @InstallIn(ViewModelComponent::class)
