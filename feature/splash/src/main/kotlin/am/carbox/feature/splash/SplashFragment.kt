@@ -32,7 +32,7 @@ class SplashFragment : Fragment() {
         view.findViewById<View>(R.id.title).setOnClickListener {
             router.get().navigateToLogin("data")
         }
-        viewModel.test(requireActivity())
+        viewModel.test()
     }
 }
 

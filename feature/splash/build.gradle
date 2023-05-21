@@ -10,6 +10,7 @@ android {
 
 dependencies {
     implementation project(':domain:user')
+    implementation project(':core:common')
     implementation "com.google.dagger:hilt-android:2.46"
     kapt "com.google.dagger:hilt-compiler:2.46"
 

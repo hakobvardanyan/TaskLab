@@ -1,5 +1,7 @@
 package am.carbox.core.io.di
 
+import am.carbox.core.io.dispatchers.CarBoxDispatchers
+import am.carbox.core.io.dispatchers.CarBoxDispatchersImpl
 import am.carbox.core.io.preference.SensitivePreferencesService
 import am.carbox.core.io.preference.SensitivePreferencesServiceImpl
 import am.carbox.core.io.preference.SharedPreferencesService
@@ -25,4 +27,10 @@ internal interface IoModuleBindings {
     fun bindSharedPreferences(
         implementation: SharedPreferencesServiceImpl
     ): SharedPreferencesService
+
+    @Binds
+    @Singleton
+    fun bindDispatchers(
+        implementation: CarBoxDispatchersImpl
+    ): CarBoxDispatchers
 }

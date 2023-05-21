@@ -1,5 +1,3 @@
-package am.carbox.feature.splash.domain
-
 import org.junit.Test
 
 import org.junit.Assert.*
