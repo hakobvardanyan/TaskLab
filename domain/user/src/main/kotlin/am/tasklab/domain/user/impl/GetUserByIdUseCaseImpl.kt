@@ -14,6 +14,6 @@ internal class GetUserByIdUseCaseImpl @Inject constructor(
 ) : GetUserByIdUseCase {
 
     override fun invoke(userId: String): Flow<Any?> = flow {
-        emit(Unit)
+        emit(repo.isSignedIn)
     }.flowOn(dispatchers.io)
 }

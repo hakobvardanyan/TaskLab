@@ -9,4 +9,8 @@ subprojects {
         baseline file("detekt-baseline.xml")
         config.setFrom(files("${project.rootProject.projectDir}/config/detekt/detekt.yml"))
     }
+
+    tasks.named("detekt").configure {
+        jvmTarget = "17"
+    }
 }

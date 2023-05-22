@@ -8,11 +8,10 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class SingleActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivitySingleBinding
+    private val binding by lazy { ActivitySingleBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySingleBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
 }
