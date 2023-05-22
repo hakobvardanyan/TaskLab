@@ -1,59 +1,55 @@
 package com.tasklab.data.auth.impl
 
+import am.tasklab.core.io.dispatchers.TaskLabDispatchers
 import com.tasklab.data.auth.api.AuthLocalRepository
 import com.tasklab.data.auth.api.AuthRemoteRepository
 import com.tasklab.data.auth.api.AuthRepository
-import com.tasklab.data.auth.model.AuthState
-import android.app.Activity
+import com.tasklab.data.auth.model.SignInRequest
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onEach
+import java.util.UUID
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 internal class AuthRepositoryImpl @Inject constructor(
+    private val dispatchers: TaskLabDispatchers,
     private val authLocalRepository: AuthLocalRepository,
-    private val authRemoteRepository: AuthRemoteRepository,
+    private val authRemoteRepository: AuthRemoteRepository
 ) : AuthRepository {
 
     override val isSignedIn: Flow<Boolean>
         get() = authLocalRepository.isSignedIn
 
-    override val verificationId: Flow<String>
-        get() = flowOf("")
+    override val userId: Flow<String>
+        get() = authLocalRepository.userId
 
-    override val firebaseUserId: Flow<String>
-        get() = flowOf("")
+    override fun signIn(body: SignInRequest): Flow<Boolean> = authRemoteRepository.signIn(body)
+        .onEach {
+            authLocalRepository.cacheUserSensitiveData(
+                authToken = it.token,
+                regenerateToken = it.regenerateToken,
+                userId = UUID.randomUUID().toString()
+            )
+        }
+        .map { it.token != null }
+        .flowOn(dispatchers.io)
 
-    override val isFirebaseTokenExists: Flow<Boolean>
-        get() = flowOf(false)
+    override fun signOut(): Flow<Boolean> = authRemoteRepository.signOut()
+        .onEach { signedOut ->
+            if (signedOut) {
+                authLocalRepository.removeUserSensitiveData()
+            }
+        }
+        .flowOn(dispatchers.io)
 
-    override fun signIn(): Flow<Boolean> = flow {
-
-    }
-
-    override fun signOut(): Flow<Boolean> = flow {
-
-    }
-
-    override fun getFirebaseIdToken(): Flow<String> = flow {
-
-    }
-
-    override fun consumeFirebasePushToken(): Flow<String>  = flow {
-
-    }
-
-    override fun startVerification(activity: Activity, phoneNumber: String): Flow<AuthState> {
-        return authRemoteRepository.startVerification(activity, phoneNumber)
-    }
-
-    override fun resendVerification(phoneNumber: String): Flow<AuthState> = flow {
-
-    }
-
-    override fun verifyVerificationCode(verificationId: String, smsCode: String): Flow<AuthState> = flow {
-
-    }
+    override fun consumePushToken(): Flow<String> = authRemoteRepository.consumePushToken()
+        .onEach { pushToken ->
+            authLocalRepository.cacheUserSensitiveData(
+                pushToken = pushToken
+            )
+        }
+        .flowOn(dispatchers.io)
 }

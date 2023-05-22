@@ -9,6 +9,7 @@ android {
 }
 
 dependencies {
+    implementation project(":core:io")
     implementation project(":core:common")
     implementation project(":core:network")
 
@@ -18,9 +19,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'androidx.core:core-ktx:1.10.1'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
-    implementation 'com.google.firebase:firebase-auth-ktx:22.0.0'
     implementation 'com.google.code.gson:gson:2.10.1'
-    implementation 'com.google.firebase:firebase-messaging-ktx:23.1.2'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

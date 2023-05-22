@@ -1,50 +1,40 @@
 package com.tasklab.data.auth.impl
 
+import am.tasklab.core.io.dispatchers.TaskLabDispatchers
+import am.tasklab.core.io.preference.SensitivePreferencesService
 import com.tasklab.data.auth.api.AuthLocalRepository
-import com.google.firebase.auth.PhoneAuthProvider
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-internal class AuthLocalRepositoryImpl @Inject constructor() : AuthLocalRepository {
+internal class AuthLocalRepositoryImpl @Inject constructor(
+    private val dispatchers: TaskLabDispatchers,
+    private val preferences: SensitivePreferencesService
+) : AuthLocalRepository {
 
     override val isSignedIn: Flow<Boolean>
-        get() = flowOf(true)
+        get() = preferences.userId
+            .map { it.isNotBlank() }
+            .flowOn(dispatchers.io)
 
-    override val firebaseUserId: Flow<String>
-        get() = flowOf("")
+    override val userId: Flow<String>
+        get() = preferences.userId
 
-    override val firebaseIdToken: Flow<String>
-        get() = flowOf("")
-
-    override val firebaseUserPhone: Flow<String>
-        get() = flowOf("")
-
-    override val isFirebaseTokenExists: Flow<Boolean>
-        get() = flowOf(false)
-
-    override val firebaseVerificationId: Flow<String>
-        get() = flowOf("")
-
-    override val firebaseForceResendingToken: Flow<PhoneAuthProvider.ForceResendingToken?>
-        get() = flow {  }
-
-    override fun removeUserSensitiveData(): Flow<Unit> = flow {
-
+    override suspend fun removeUserSensitiveData() {
+        preferences.clear()
     }
 
-    override fun cacheUserSensitiveData(
+    override suspend fun cacheUserSensitiveData(
+        userId: String?,
         authToken: String?,
-        regenerateToken: String?,
-        firebaseUserId: String?,
-        firebaseIdToken: String?,
-        firebaseUserPhone: String?,
-        firebaseVerificationId: String?,
-        firebaseForceResendingToken: PhoneAuthProvider.ForceResendingToken?,
-    ): Flow<Unit> = flow {
-
+        pushToken: String?,
+        regenerateToken: String?
+    ) {
+        userId?.let { preferences.updateUserId(it) }
+        authToken?.let { preferences.updateAuthToken(it) }
+        regenerateToken?.let { preferences.updateRegenerateToken(it) }
     }
 }
