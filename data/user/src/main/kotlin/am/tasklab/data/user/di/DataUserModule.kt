@@ -1,6 +1,6 @@
-package com.tasklab.data.auth.di
+package am.tasklab.data.user.di
 
-import com.tasklab.data.auth.service.AuthApiService
+import am.tasklab.data.user.service.UserApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -10,11 +10,11 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-internal object DataAuthModule {
+internal object DataUserModule {
 
     @Singleton
     @Provides
-    fun provideAuthApiService(retrofit: Retrofit): AuthApiService {
-        return retrofit.create(AuthApiService::class.java)
+    fun provideUserApiService(retrofit: Retrofit): UserApiService {
+        return retrofit.create(UserApiService::class.java)
     }
 }

@@ -9,7 +9,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
-import java.util.UUID
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -28,7 +27,7 @@ internal class AuthRepositoryImpl @Inject constructor(
 
     override fun signIn(body: SignInRequest): Flow<Boolean> = authRemoteRepository.signIn(body)
         .onEach(authLocalRepository::cacheUserSensitiveData)
-        .map { it.user?.id != null }
+        .map { it.account?.id != null }
         .flowOn(dispatchers.io)
 
     override fun signOut(): Flow<Boolean> = authRemoteRepository.signOut()
