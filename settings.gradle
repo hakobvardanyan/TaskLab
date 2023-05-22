@@ -22,7 +22,6 @@ include ':core:extensions'
 
 include ':feature:auth:'
 include ':feature:splash'
-include ':feature:car-registration'
 
 include ':domain:user'
 
