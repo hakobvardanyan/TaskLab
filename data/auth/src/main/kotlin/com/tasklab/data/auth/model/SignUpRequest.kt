@@ -2,7 +2,7 @@ package com.tasklab.data.auth.model
 
 import com.google.gson.annotations.SerializedName
 
-data class SignInRequest(
+data class SignUpRequest(
     @SerializedName("email")
     val email: String,
     @SerializedName("password")

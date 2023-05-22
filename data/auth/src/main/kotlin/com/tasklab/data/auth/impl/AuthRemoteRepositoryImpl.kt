@@ -6,6 +6,9 @@ import am.tasklab.core.network.parser.BaseResponseParser
 import com.tasklab.data.auth.api.AuthRemoteRepository
 import com.tasklab.data.auth.model.SignInRequest
 import com.tasklab.data.auth.model.SignInResponse
+import com.tasklab.data.auth.model.SignUpRequest
+import com.tasklab.data.auth.model.SignUpResponse
+import com.tasklab.data.auth.model.UserResponse
 import com.tasklab.data.auth.service.AuthApiService
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
@@ -19,6 +22,13 @@ internal class AuthRemoteRepositoryImpl @Inject constructor(
     private val authApiService: AuthApiService,
     private val responseParser: BaseResponseParser
 ) : AuthRemoteRepository {
+
+    override fun signUp(body: SignUpRequest): Flow<SignUpResponse> = flow {
+        Logger.debug("$TAG.signUp() body = $body")
+        delay(Random.nextLong(1000))
+        emit(mockedSignUpResponse())
+//        emit(authApiService.signUp(body))
+    }.map(responseParser::parse)
 
     override fun signIn(body: SignInRequest): Flow<SignInResponse> = flow {
         Logger.debug("$TAG.signIn() body = $body")
@@ -46,6 +56,27 @@ internal class AuthRemoteRepositoryImpl @Inject constructor(
         status = true,
         timestamp = System.currentTimeMillis(),
         data = SignInResponse(
+            user = UserResponse(
+                id = UUID.randomUUID().toString(),
+                firstName = "John",
+                lastName = "Smith",
+                age = 35
+            ),
+            token = UUID.randomUUID().toString(),
+            regenerateToken = UUID.randomUUID().toString()
+        )
+    )
+
+    private fun mockedSignUpResponse(): BaseResponse<SignUpResponse> = BaseResponse(
+        status = true,
+        timestamp = System.currentTimeMillis(),
+        data = SignUpResponse(
+            user = UserResponse(
+                id = UUID.randomUUID().toString(),
+                firstName = "John",
+                lastName = "Smith",
+                age = 35
+            ),
             token = UUID.randomUUID().toString(),
             regenerateToken = UUID.randomUUID().toString()
         )

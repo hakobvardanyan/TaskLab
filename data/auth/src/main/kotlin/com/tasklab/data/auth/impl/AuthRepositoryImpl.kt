@@ -27,14 +27,8 @@ internal class AuthRepositoryImpl @Inject constructor(
         get() = authLocalRepository.userId
 
     override fun signIn(body: SignInRequest): Flow<Boolean> = authRemoteRepository.signIn(body)
-        .onEach {
-            authLocalRepository.cacheUserSensitiveData(
-                authToken = it.token,
-                regenerateToken = it.regenerateToken,
-                userId = UUID.randomUUID().toString()
-            )
-        }
-        .map { it.token != null }
+        .onEach(authLocalRepository::cacheUserSensitiveData)
+        .map { it.user?.id != null }
         .flowOn(dispatchers.io)
 
     override fun signOut(): Flow<Boolean> = authRemoteRepository.signOut()
@@ -46,10 +40,6 @@ internal class AuthRepositoryImpl @Inject constructor(
         .flowOn(dispatchers.io)
 
     override fun consumePushToken(): Flow<String> = authRemoteRepository.consumePushToken()
-        .onEach { pushToken ->
-            authLocalRepository.cacheUserSensitiveData(
-                pushToken = pushToken
-            )
-        }
+        .onEach(authLocalRepository::cachePushToken)
         .flowOn(dispatchers.io)
 }

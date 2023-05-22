@@ -1,5 +1,6 @@
 package com.tasklab.data.auth.api
 
+import com.tasklab.data.auth.model.SignInResponse
 import kotlinx.coroutines.flow.Flow
 
 internal interface AuthLocalRepository {
@@ -10,10 +11,8 @@ internal interface AuthLocalRepository {
 
     suspend fun removeUserSensitiveData()
 
-    suspend fun cacheUserSensitiveData(
-        userId: String? = null,
-        authToken: String? = null,
-        pushToken: String? = null,
-        regenerateToken: String? = null,
-    )
+    suspend fun cachePushToken(token: String)
+
+    suspend fun cacheUserSensitiveData(data: SignInResponse)
+
 }

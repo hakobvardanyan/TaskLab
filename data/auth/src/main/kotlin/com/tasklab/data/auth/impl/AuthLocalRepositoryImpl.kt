@@ -3,6 +3,7 @@ package com.tasklab.data.auth.impl
 import am.tasklab.core.io.dispatchers.TaskLabDispatchers
 import am.tasklab.core.io.preference.SensitivePreferencesService
 import com.tasklab.data.auth.api.AuthLocalRepository
+import com.tasklab.data.auth.model.SignInResponse
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
@@ -27,14 +28,14 @@ internal class AuthLocalRepositoryImpl @Inject constructor(
         preferences.clear()
     }
 
-    override suspend fun cacheUserSensitiveData(
-        userId: String?,
-        authToken: String?,
-        pushToken: String?,
-        regenerateToken: String?
-    ) {
-        userId?.let { preferences.updateUserId(it) }
-        authToken?.let { preferences.updateAuthToken(it) }
-        regenerateToken?.let { preferences.updateRegenerateToken(it) }
+    override suspend fun cachePushToken(token: String) {
+        preferences.updatePushToken(token)
     }
+
+    override suspend fun cacheUserSensitiveData(data: SignInResponse) {
+        data.user?.id?.let { preferences.updateUserId(it) }
+        data.token?.let { preferences.updateAuthToken(it) }
+        data.regenerateToken?.let { preferences.updateRegenerateToken(it) }
+    }
+
 }
