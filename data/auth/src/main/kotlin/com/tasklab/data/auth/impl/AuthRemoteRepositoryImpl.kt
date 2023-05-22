@@ -8,7 +8,7 @@ import com.tasklab.data.auth.model.SignInRequest
 import com.tasklab.data.auth.model.SignInResponse
 import com.tasklab.data.auth.model.SignUpRequest
 import com.tasklab.data.auth.model.SignUpResponse
-import com.tasklab.data.auth.model.UserResponse
+import com.tasklab.data.auth.model.AccountResponse
 import com.tasklab.data.auth.service.AuthApiService
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
@@ -56,7 +56,7 @@ internal class AuthRemoteRepositoryImpl @Inject constructor(
         status = true,
         timestamp = System.currentTimeMillis(),
         data = SignInResponse(
-            user = UserResponse(
+            account = AccountResponse(
                 id = UUID.randomUUID().toString(),
                 firstName = "John",
                 lastName = "Smith",
@@ -71,7 +71,7 @@ internal class AuthRemoteRepositoryImpl @Inject constructor(
         status = true,
         timestamp = System.currentTimeMillis(),
         data = SignUpResponse(
-            user = UserResponse(
+            account = AccountResponse(
                 id = UUID.randomUUID().toString(),
                 firstName = "John",
                 lastName = "Smith",
