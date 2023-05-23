@@ -3,7 +3,7 @@ package am.tasklab.data.user.impl
 import am.tasklab.core.io.preference.SensitivePreferencesService
 import am.tasklab.core.io.preference.SharedPreferencesService
 import am.tasklab.data.user.api.UserLocalRepository
-import am.tasklab.data.user.model.UserResponse
+import am.tasklab.entity.UserResponse
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -13,12 +13,12 @@ internal class UserLocalRepositoryImpl @Inject constructor(
     private val sensitivePreferences: SensitivePreferencesService
 ) : UserLocalRepository {
 
-    override fun getMyUser(): Flow<UserResponse> = sensitivePreferences.userId
+    override fun getMyUser(): Flow<am.tasklab.entity.UserResponse> = sensitivePreferences.userId
         .map { userId ->
             val firstName = sharedPreferences.getFirstName()
             val lastName = sharedPreferences.getLastName()
             val age = sharedPreferences.getAge()
-            UserResponse(
+            am.tasklab.entity.UserResponse(
                 id = userId,
                 firstName = firstName,
                 lastName = lastName,
@@ -26,7 +26,7 @@ internal class UserLocalRepositoryImpl @Inject constructor(
             )
         }
 
-    override suspend fun saveMyUser(user: UserResponse) {
+    override suspend fun saveMyUser(user: am.tasklab.entity.UserResponse) {
         sharedPreferences.updateUserDetails(
             age = user.age ?: 0,
             lastName = user.lastName.orEmpty(),

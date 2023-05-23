@@ -1,4 +1,4 @@
-package am.tasklab.data.user.model
+package am.tasklab.entity
 
 import com.google.gson.annotations.SerializedName
 

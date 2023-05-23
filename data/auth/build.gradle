@@ -12,6 +12,7 @@ dependencies {
     implementation project(":core:io")
     implementation project(":core:common")
     implementation project(":core:network")
+    implementation project(":data:entity")
 
     implementation "com.google.dagger:hilt-android:2.46"
     kapt "com.google.dagger:hilt-compiler:2.46"

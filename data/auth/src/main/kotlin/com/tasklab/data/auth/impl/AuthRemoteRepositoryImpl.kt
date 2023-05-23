@@ -4,11 +4,11 @@ import am.tasklab.core.common.logger.Logger
 import am.tasklab.core.network.model.BaseResponse
 import am.tasklab.core.network.parser.BaseResponseParser
 import com.tasklab.data.auth.api.AuthRemoteRepository
-import com.tasklab.data.auth.model.SignInRequest
-import com.tasklab.data.auth.model.SignInResponse
-import com.tasklab.data.auth.model.SignUpRequest
-import com.tasklab.data.auth.model.SignUpResponse
-import com.tasklab.data.auth.model.AccountResponse
+import am.tasklab.entity.SignInRequest
+import am.tasklab.entity.SignInResponse
+import am.tasklab.entity.SignUpRequest
+import am.tasklab.entity.SignUpResponse
+import am.tasklab.entity.UserResponse
 import com.tasklab.data.auth.service.AuthApiService
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
@@ -56,11 +56,12 @@ internal class AuthRemoteRepositoryImpl @Inject constructor(
         status = true,
         timestamp = System.currentTimeMillis(),
         data = SignInResponse(
-            account = AccountResponse(
+            user = UserResponse(
                 id = UUID.randomUUID().toString(),
                 firstName = "John",
                 lastName = "Smith",
-                age = 35
+                age = 35,
+                avatar = "link to avatar"
             ),
             token = UUID.randomUUID().toString(),
             regenerateToken = UUID.randomUUID().toString()
@@ -71,11 +72,12 @@ internal class AuthRemoteRepositoryImpl @Inject constructor(
         status = true,
         timestamp = System.currentTimeMillis(),
         data = SignUpResponse(
-            account = AccountResponse(
+            user = UserResponse(
                 id = UUID.randomUUID().toString(),
                 firstName = "John",
                 lastName = "Smith",
-                age = 35
+                age = 35,
+                avatar = "link to avatar"
             ),
             token = UUID.randomUUID().toString(),
             regenerateToken = UUID.randomUUID().toString()

@@ -1,0 +1,18 @@
+plugins {
+    id 'com.google.dagger.hilt.android'
+    id 'kotlin-kapt'
+}
+
+apply from: "$rootProject.projectDir/android-library.gradle"
+android {
+    namespace 'am.tasklab.domain.mapper'
+}
+
+dependencies {
+    implementation project(':core:common')
+    implementation project(':domain:entity')
+    implementation project(':data:entity')
+
+    implementation "com.google.dagger:hilt-android:2.46"
+    kapt "com.google.dagger:hilt-compiler:2.46"
+}

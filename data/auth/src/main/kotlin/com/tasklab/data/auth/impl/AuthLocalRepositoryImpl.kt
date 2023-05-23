@@ -2,7 +2,7 @@ package com.tasklab.data.auth.impl
 
 import am.tasklab.core.io.preference.SensitivePreferencesService
 import com.tasklab.data.auth.api.AuthLocalRepository
-import com.tasklab.data.auth.model.SignInResponse
+import am.tasklab.entity.SignInResponse
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject

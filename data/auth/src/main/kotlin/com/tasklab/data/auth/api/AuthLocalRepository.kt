@@ -1,6 +1,6 @@
 package com.tasklab.data.auth.api
 
-import com.tasklab.data.auth.model.SignInResponse
+import am.tasklab.entity.SignInResponse
 import kotlinx.coroutines.flow.Flow
 
 internal interface AuthLocalRepository {

@@ -4,7 +4,7 @@ import am.tasklab.core.io.dispatchers.TaskLabDispatchers
 import com.tasklab.data.auth.api.AuthLocalRepository
 import com.tasklab.data.auth.api.AuthRemoteRepository
 import com.tasklab.data.auth.api.AuthRepository
-import com.tasklab.data.auth.model.SignInRequest
+import am.tasklab.entity.SignInRequest
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map

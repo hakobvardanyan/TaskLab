@@ -28,3 +28,5 @@ include ':domain:entity'
 
 include ':data:user'
 include ':data:auth'
+include ':domain:mapper'
+include ':data:entity'

@@ -1,12 +1,12 @@
 package com.tasklab.data.auth.service
 
 import am.tasklab.core.network.model.BaseResponse
-import com.tasklab.data.auth.model.AuthTokenRequest
-import com.tasklab.data.auth.model.AuthTokenResponse
-import com.tasklab.data.auth.model.SignInRequest
-import com.tasklab.data.auth.model.SignInResponse
-import com.tasklab.data.auth.model.SignUpRequest
-import com.tasklab.data.auth.model.SignUpResponse
+import am.tasklab.entity.AuthTokenRequest
+import am.tasklab.entity.AuthTokenResponse
+import am.tasklab.entity.SignInRequest
+import am.tasklab.entity.SignInResponse
+import am.tasklab.entity.SignUpRequest
+import am.tasklab.entity.SignUpResponse
 import retrofit2.http.Body
 import retrofit2.http.POST
 

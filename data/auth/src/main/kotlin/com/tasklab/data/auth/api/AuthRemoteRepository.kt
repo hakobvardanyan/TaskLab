@@ -1,9 +1,9 @@
 package com.tasklab.data.auth.api
 
-import com.tasklab.data.auth.model.SignInRequest
-import com.tasklab.data.auth.model.SignInResponse
-import com.tasklab.data.auth.model.SignUpRequest
-import com.tasklab.data.auth.model.SignUpResponse
+import am.tasklab.entity.SignInRequest
+import am.tasklab.entity.SignInResponse
+import am.tasklab.entity.SignUpRequest
+import am.tasklab.entity.SignUpResponse
 import kotlinx.coroutines.flow.Flow
 
 internal interface AuthRemoteRepository {

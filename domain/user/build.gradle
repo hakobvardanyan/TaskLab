@@ -10,8 +10,11 @@ android {
 
 dependencies {
     implementation project(':domain:entity')
+    implementation project(':domain:mapper')
     implementation project(':data:user')
+    implementation project(':data:entity')
     implementation project(':core:io')
+    implementation project(':core:common')
 
     implementation 'androidx.core:core-ktx:1.10.1'
     implementation "com.google.dagger:hilt-android:2.46"

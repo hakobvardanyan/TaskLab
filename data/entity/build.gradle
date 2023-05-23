@@ -1,0 +1,8 @@
+apply from: "$rootProject.projectDir/android-library.gradle"
+android {
+    namespace 'am.tasklab.data.entity'
+}
+
+dependencies {
+    implementation 'com.google.code.gson:gson:2.10.1'
+}

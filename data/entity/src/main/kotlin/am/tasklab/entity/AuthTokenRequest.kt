@@ -1,4 +1,4 @@
-package com.tasklab.data.auth.model
+package am.tasklab.entity
 
 import com.google.gson.annotations.SerializedName
 
