@@ -1,11 +1,15 @@
 package am.tasklab.domain.user.di
 
+import am.tasklab.domain.user.api.GetMyUserUseCase
 import am.tasklab.domain.user.api.GetUserByIdUseCase
+import am.tasklab.domain.user.api.UpdateUserUseCase
+import am.tasklab.domain.user.impl.GetMyUserUseCaseImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import am.tasklab.domain.user.impl.GetUserByIdUseCaseImpl
+import am.tasklab.domain.user.impl.UpdateUserUseCaseImpl
 
 @Module
 @InstallIn(ViewModelComponent::class)
@@ -15,4 +19,14 @@ internal interface UserDomainModuleBinding {
     fun bindGetUserByIdUseCase(
         implementation: GetUserByIdUseCaseImpl
     ): GetUserByIdUseCase
+
+    @Binds
+    fun bindGetMyUserUseCase(
+        implementation: GetMyUserUseCaseImpl
+    ): GetMyUserUseCase
+
+    @Binds
+    fun bindUpdateUserUseCase(
+        implementation: UpdateUserUseCaseImpl
+    ): UpdateUserUseCase
 }

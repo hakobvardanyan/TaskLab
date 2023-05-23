@@ -2,17 +2,18 @@ package am.tasklab.domain.user.impl
 
 import am.tasklab.core.io.dispatchers.TaskLabDispatchers
 import am.tasklab.data.user.api.UserRepository
-import am.tasklab.domain.user.api.GetUserByIdUseCase
+import am.tasklab.domain.user.api.GetMyUserUseCase
+import am.tasklab.entity.User
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
-internal class GetUserByIdUseCaseImpl @Inject constructor(
+internal class GetMyUserUseCaseImpl @Inject constructor(
     private val repository: UserRepository,
     private val dispatchers: TaskLabDispatchers
-) : GetUserByIdUseCase {
+) : GetMyUserUseCase {
 
-    override fun invoke(userId: String): Flow<Any?> = repository
-        .getUserById(userId)
+    override fun invoke(): Flow<User> = repository
+        .getMyUser()
         .flowOn(dispatchers.io)
 }

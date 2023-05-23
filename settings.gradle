@@ -24,6 +24,7 @@ include ':feature:auth:'
 include ':feature:splash'
 
 include ':domain:user'
+include ':domain:entity'
 
 include ':data:user'
 include ':data:auth'

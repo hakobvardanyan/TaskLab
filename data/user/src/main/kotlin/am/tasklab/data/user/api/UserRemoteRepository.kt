@@ -4,7 +4,7 @@ import am.tasklab.data.user.model.UserRequest
 import am.tasklab.data.user.model.UserResponse
 import kotlinx.coroutines.flow.Flow
 
-interface UserRemoteRepository {
+internal interface UserRemoteRepository {
 
     fun getUserById(userId: String): Flow<UserResponse>
 
