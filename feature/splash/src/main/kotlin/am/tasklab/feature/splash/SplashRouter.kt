@@ -2,5 +2,9 @@ package am.tasklab.feature.splash
 
 interface SplashRouter {
 
-    fun navigateToLogin(someData: String)
+    fun navigateToAuth()
+
+    fun navigateToHome()
+
+    fun navigateToOnBoarding()
 }

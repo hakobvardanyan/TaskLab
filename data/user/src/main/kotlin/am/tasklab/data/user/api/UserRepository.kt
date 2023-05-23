@@ -1,13 +1,16 @@
 package am.tasklab.data.user.api
 
 import am.tasklab.entity.UserRequest
+import am.tasklab.entity.UserResponse
 import kotlinx.coroutines.flow.Flow
 
 interface UserRepository {
 
-    fun getMyUser(): Flow<am.tasklab.entity.UserResponse>
+    fun getMyUser(): Flow<UserResponse>
 
-    fun getUserById(userId: String): Flow<am.tasklab.entity.UserResponse>
+    fun getUserById(userId: String): Flow<UserResponse>
 
-    fun updateUser(user: UserRequest): Flow<am.tasklab.entity.UserResponse>
+    fun hasUserInteractedWithOnBoarding(): Flow<Boolean>
+
+    fun updateUser(user: UserRequest): Flow<UserResponse>
 }

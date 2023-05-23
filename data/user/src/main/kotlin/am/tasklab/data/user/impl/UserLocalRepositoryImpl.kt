@@ -5,6 +5,7 @@ import am.tasklab.core.io.preference.SharedPreferencesService
 import am.tasklab.data.user.api.UserLocalRepository
 import am.tasklab.entity.UserResponse
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
@@ -13,12 +14,12 @@ internal class UserLocalRepositoryImpl @Inject constructor(
     private val sensitivePreferences: SensitivePreferencesService
 ) : UserLocalRepository {
 
-    override fun getMyUser(): Flow<am.tasklab.entity.UserResponse> = sensitivePreferences.userId
+    override fun getMyUser(): Flow<UserResponse> = sensitivePreferences.userId
         .map { userId ->
             val firstName = sharedPreferences.getFirstName()
             val lastName = sharedPreferences.getLastName()
             val age = sharedPreferences.getAge()
-            am.tasklab.entity.UserResponse(
+            UserResponse(
                 id = userId,
                 firstName = firstName,
                 lastName = lastName,
@@ -26,13 +27,17 @@ internal class UserLocalRepositoryImpl @Inject constructor(
             )
         }
 
-    override suspend fun saveMyUser(user: am.tasklab.entity.UserResponse) {
+    override suspend fun saveMyUser(user: UserResponse) {
         sharedPreferences.updateUserDetails(
             age = user.age ?: 0,
             lastName = user.lastName.orEmpty(),
             firstName = user.firstName.orEmpty()
         )
         sensitivePreferences.updateUserId(user.id.orEmpty())
+    }
+
+    override fun hasUserInteractedWithOnBoarding(): Flow<Boolean> = flow {
+        emit(sharedPreferences.hasUserInteractedWithOnBoarding())
     }
 
     override fun getMyUserId(): Flow<String> = sensitivePreferences.userId

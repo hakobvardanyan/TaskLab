@@ -5,6 +5,7 @@ import am.tasklab.core.network.model.BaseResponse
 import am.tasklab.core.network.parser.BaseResponseParser
 import am.tasklab.data.user.api.UserRemoteRepository
 import am.tasklab.entity.UserRequest
+import am.tasklab.entity.UserResponse
 import am.tasklab.data.user.service.UserApiService
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -19,14 +20,14 @@ internal class UserRemoteRepositoryImpl @Inject constructor(
     private val responseParser: BaseResponseParser
 ) : UserRemoteRepository {
 
-    override fun getUserById(userId: String): Flow<am.tasklab.entity.UserResponse> = flow {
+    override fun getUserById(userId: String): Flow<UserResponse> = flow {
         Logger.debug("$TAG.getUserById() userId = $userId")
         delay(Random.nextLong(800))
         emit(mockedUserResponse())
 //        emit(userApiService.getUserById(userId))
     }.map(responseParser::parse)
 
-    override fun updateUser(user: UserRequest): Flow<am.tasklab.entity.UserResponse> = flow {
+    override fun updateUser(user: UserRequest): Flow<UserResponse> = flow {
         Logger.debug("$TAG.updateUser() user = $user")
         delay(Random.nextLong(800))
         emit(mockedUserResponse())
@@ -36,7 +37,7 @@ internal class UserRemoteRepositoryImpl @Inject constructor(
     private fun mockedUserResponse() = BaseResponse(
         status = true,
         timestamp = System.currentTimeMillis(),
-        data = am.tasklab.entity.UserResponse(
+        data = UserResponse(
             id = UUID.randomUUID().toString(),
             firstName = "John",
             lastName = "Smith",

@@ -7,7 +7,9 @@ internal interface UserLocalRepository {
 
     fun getMyUserId(): Flow<String>
 
-    fun getMyUser(): Flow<am.tasklab.entity.UserResponse>
+    fun getMyUser(): Flow<UserResponse>
 
-    suspend fun saveMyUser(user: am.tasklab.entity.UserResponse)
+    suspend fun saveMyUser(user: UserResponse)
+
+    fun hasUserInteractedWithOnBoarding(): Flow<Boolean>
 }

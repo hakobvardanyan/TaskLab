@@ -5,6 +5,7 @@ import am.tasklab.data.user.api.UserLocalRepository
 import am.tasklab.data.user.api.UserRemoteRepository
 import am.tasklab.data.user.api.UserRepository
 import am.tasklab.entity.UserRequest
+import am.tasklab.entity.UserResponse
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOn
@@ -17,9 +18,9 @@ internal class UserRepositoryImpl @Inject constructor(
     private val userRemoteRepository: UserRemoteRepository
 ) : UserRepository {
 
-    override fun getMyUser(): Flow<am.tasklab.entity.UserResponse> = userLocalRepository.getMyUser()
+    override fun getMyUser(): Flow<UserResponse> = userLocalRepository.getMyUser()
 
-    override fun getUserById(userId: String): Flow<am.tasklab.entity.UserResponse> = userRemoteRepository
+    override fun getUserById(userId: String): Flow<UserResponse> = userRemoteRepository
         .getUserById(userId)
         .onEach {
             if (userLocalRepository.getMyUserId().first() == userId) {
@@ -28,7 +29,10 @@ internal class UserRepositoryImpl @Inject constructor(
         }
         .flowOn(dispatchers.io)
 
-    override fun updateUser(user: UserRequest): Flow<am.tasklab.entity.UserResponse> = userRemoteRepository
+    override fun hasUserInteractedWithOnBoarding(): Flow<Boolean> = userLocalRepository
+        .hasUserInteractedWithOnBoarding()
+
+    override fun updateUser(user: UserRequest): Flow<UserResponse> = userRemoteRepository
         .updateUser(user)
         .onEach {
             if (userLocalRepository.getMyUserId().first() == it.id) {
