@@ -1,4 +1,4 @@
-package am.tasklab.navigation
+package am.tasklab.navigation.di
 
 import am.tasklab.SingleActivity
 import am.tasklab.R

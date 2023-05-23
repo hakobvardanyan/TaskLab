@@ -14,13 +14,15 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
+private typealias Router = dagger.Lazy<SplashRouter>
+
 @AndroidEntryPoint
 class SplashFragment : Fragment(R.layout.fragment_splash) {
 
     private val viewModel by viewModels<SplashViewModel>()
 
     @Inject
-    lateinit var router: dagger.Lazy<SplashRouter>
+    lateinit var router: Router
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         startCollectingViewModelFlows()

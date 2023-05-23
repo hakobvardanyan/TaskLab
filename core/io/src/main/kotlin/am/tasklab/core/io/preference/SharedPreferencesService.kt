@@ -10,6 +10,8 @@ interface SharedPreferencesService {
 
     suspend fun hasUserInteractedWithOnBoarding(): Boolean
 
+    suspend fun updateUserInteractedWithOnBoarding(interacted: Boolean)
+
     suspend fun updateUserDetails(firstName: String, lastName: String, age: Int)
 
     suspend fun clear()

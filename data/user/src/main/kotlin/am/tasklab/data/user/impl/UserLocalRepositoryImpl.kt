@@ -40,5 +40,9 @@ internal class UserLocalRepositoryImpl @Inject constructor(
         emit(sharedPreferences.hasUserInteractedWithOnBoarding())
     }
 
+    override suspend fun updateUserInteractedWithOnBoarding(interacted: Boolean) {
+        sharedPreferences.updateUserInteractedWithOnBoarding(interacted)
+    }
+
     override fun getMyUserId(): Flow<String> = sensitivePreferences.userId
 }

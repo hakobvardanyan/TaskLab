@@ -10,13 +10,15 @@ import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+private typealias Router = dagger.Lazy<AuthRouter>
+
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
 
     private val viewModel by viewModels<LoginViewModel>()
 
     @Inject
-    lateinit var router: dagger.Lazy<AuthRouter>
+    lateinit var router: Router
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

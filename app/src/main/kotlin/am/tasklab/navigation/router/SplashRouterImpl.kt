@@ -1,4 +1,4 @@
-package am.tasklab.navigation
+package am.tasklab.navigation.router
 
 import am.tasklab.R
 import am.tasklab.feature.splash.SplashRouter

@@ -12,4 +12,6 @@ internal interface UserLocalRepository {
     suspend fun saveMyUser(user: UserResponse)
 
     fun hasUserInteractedWithOnBoarding(): Flow<Boolean>
+
+    suspend fun updateUserInteractedWithOnBoarding(interacted: Boolean)
 }

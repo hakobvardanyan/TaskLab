@@ -12,5 +12,7 @@ interface UserRepository {
 
     fun hasUserInteractedWithOnBoarding(): Flow<Boolean>
 
+    fun updateUserInteractedWithOnBoarding(interacted: Boolean): Flow<Unit>
+
     fun updateUser(user: UserRequest): Flow<UserResponse>
 }

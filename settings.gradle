@@ -22,12 +22,13 @@ include ':core:extensions'
 
 include ':feature:auth:'
 include ':feature:splash'
+include ':feature:onboarding'
 
 include ':domain:user'
+include ':domain:auth'
 include ':domain:entity'
+include ':domain:mapper'
 
 include ':data:user'
 include ':data:auth'
-include ':domain:mapper'
 include ':data:entity'
-include ':domain:auth'

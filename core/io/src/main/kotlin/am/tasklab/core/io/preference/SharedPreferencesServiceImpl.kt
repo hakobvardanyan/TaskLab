@@ -33,6 +33,12 @@ internal class SharedPreferencesServiceImpl @Inject constructor(
         preferences[KEY_ON_BOARDING_INTERACTION].orFalse()
     }.first()
 
+    override suspend fun updateUserInteractedWithOnBoarding(interacted: Boolean) {
+        dataStore.edit { preferences ->
+            preferences[KEY_ON_BOARDING_INTERACTION] = interacted
+        }
+    }
+
     override suspend fun updateUserDetails(firstName: String, lastName: String, age: Int) {
         dataStore.edit { preferences ->
             preferences[KEY_AGE] = age
