@@ -1,4 +1,4 @@
-name: CarBox Release Workflow
+name: TaskLab Release Workflow
 
 on:
   # Allows to run this workflow manually from the Actions tab

@@ -1,7 +1,9 @@
 package am.tasklab.mapper.di
 
+import am.tasklab.mapper.api.SignInCredentialsToSignInRequestMapper
 import am.tasklab.mapper.api.UserResponseToUserMapper
 import am.tasklab.mapper.api.UserToUserRequestMapper
+import am.tasklab.mapper.impl.SignInCredentialsToSignInRequestMapperImpl
 import am.tasklab.mapper.impl.UserResponseToUserMapperImpl
 import am.tasklab.mapper.impl.UserToUserRequestMapperImpl
 import dagger.Binds
@@ -22,4 +24,9 @@ internal interface MapperModuleBindings {
     fun bindUserToUserRequestMapper(
         implementation: UserToUserRequestMapperImpl
     ): UserToUserRequestMapper
+
+    @Binds
+    fun bindSignInCredentialsToSignInRequestMapper(
+        implementation: SignInCredentialsToSignInRequestMapperImpl
+    ): SignInCredentialsToSignInRequestMapper
 }

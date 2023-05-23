@@ -5,13 +5,12 @@ plugins {
 
 apply from: "$rootProject.projectDir/android-library.gradle"
 android {
-    namespace 'am.tasklab.domain.user'
+    namespace 'am.tasklab.domain.auth'
 }
 
 dependencies {
     implementation project(':domain:entity')
     implementation project(':domain:mapper')
-    implementation project(':data:user')
     implementation project(':data:auth')
     implementation project(':data:entity')
     implementation project(':core:io')

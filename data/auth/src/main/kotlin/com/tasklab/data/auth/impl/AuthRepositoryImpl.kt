@@ -27,7 +27,7 @@ internal class AuthRepositoryImpl @Inject constructor(
 
     override fun signIn(body: SignInRequest): Flow<Boolean> = authRemoteRepository.signIn(body)
         .onEach(authLocalRepository::cacheUserSensitiveData)
-        .map { it.account?.id != null }
+        .map { it.user?.id != null }
         .flowOn(dispatchers.io)
 
     override fun signOut(): Flow<Boolean> = authRemoteRepository.signOut()

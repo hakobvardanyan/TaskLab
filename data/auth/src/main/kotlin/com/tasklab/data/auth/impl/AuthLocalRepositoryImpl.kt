@@ -29,7 +29,7 @@ internal class AuthLocalRepositoryImpl @Inject constructor(
 
     override suspend fun cacheUserSensitiveData(data: SignInResponse) {
         data.token?.let { preferences.updateAuthToken(it) }
-        data.account?.id?.let { preferences.updateUserId(it) }
+        data.user?.id?.let { preferences.updateUserId(it) }
         data.regenerateToken?.let { preferences.updateRegenerateToken(it) }
     }
 }

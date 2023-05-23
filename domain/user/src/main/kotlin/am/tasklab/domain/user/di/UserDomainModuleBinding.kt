@@ -1,8 +1,10 @@
 package am.tasklab.domain.user.di
 
+import am.tasklab.domain.user.api.GetMyUserIdUseCase
 import am.tasklab.domain.user.api.GetMyUserUseCase
 import am.tasklab.domain.user.api.GetUserByIdUseCase
 import am.tasklab.domain.user.api.UpdateUserUseCase
+import am.tasklab.domain.user.impl.GetMyUserIdUseCaseImpl
 import am.tasklab.domain.user.impl.GetMyUserUseCaseImpl
 import dagger.Binds
 import dagger.Module
@@ -29,4 +31,9 @@ internal interface UserDomainModuleBinding {
     fun bindUpdateUserUseCase(
         implementation: UpdateUserUseCaseImpl
     ): UpdateUserUseCase
+
+    @Binds
+    fun bindGetMyUserIdUseCase(
+        implementation: GetMyUserIdUseCaseImpl
+    ): GetMyUserIdUseCase
 }

@@ -1,4 +1,4 @@
-name: CarBox CI
+name: TaskLab CI
 
 on:
   push:
