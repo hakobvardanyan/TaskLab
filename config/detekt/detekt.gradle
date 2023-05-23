@@ -10,7 +10,7 @@ subprojects {
         config.setFrom(files("${project.rootProject.projectDir}/config/detekt/detekt.yml"))
     }
 
-//    tasks.named("detekt").configure {
-//        jvmTarget = "17"
-//    }
+    tasks.named("detekt").configure {
+        jvmTarget = "17"
+    }
 }
